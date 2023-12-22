@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 /*import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;*/
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -24,6 +25,7 @@ public class ZChercheurController {
     private final Logger logger = LoggerFactory.getLogger(ZChercheurController.class);
 
     private final ZChercheurRepository zchercheurRepository;
+    private int currentId = 1; // Initialisation du compteur
 
     public ZChercheurController(ZChercheurRepository zchercheurRepository) {
         this.zchercheurRepository = zchercheurRepository;
@@ -47,6 +49,21 @@ public class ZChercheurController {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
     }*/
+
+    @PostMapping("/ajouter")
+    public ResponseEntity<?> ajouterChercheur(@RequestBody ZChercheur zchercheur, UriComponentsBuilder builder) {
+        logger.info("Tentative d'ajout d'un nouveau chercheur avec l'ID : " + zchercheur.getIdche());
+
+        // Affecter un nouvel ID unique en utilisant le compteur
+        zchercheur.setIdche(currentId++); // Utilisation du compteur et incrémentation
+        zchercheur.setDDig(new Date()); // Définir la date actuelle
+
+        zchercheurRepository.save(zchercheur);
+
+        URI localisation = builder.path("/api/zchercheurs/{id}").buildAndExpand(zchercheur.getIdche()).toUri();
+        return ResponseEntity.created(localisation).body(zchercheur);
+    }
+
 
 
     @GetMapping("/liste")
