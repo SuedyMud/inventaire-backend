@@ -50,9 +50,9 @@ public class ZFacController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> supprimerZFac(@PathVariable String fac) {
-        logger.info("Tentative de suppression d'un zfac avec FAC : " + fac);
-        zfacRepository.deleteById(fac);
+    public ResponseEntity<?> supprimerZFac(@PathVariable String id) {
+        logger.info("Tentative de suppression d'un zfac avec FAC : " + id);
+        zfacRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
@@ -75,6 +75,8 @@ public class ZFacController {
             existingFac.setActif(updatedZFac.getActif());
             existingFac.setGroupe(updatedZFac.getGroupe());
             existingFac.setInvent20(updatedZFac.getInvent20());
+            // Ne pas oublier de valeur dMaj avant de sauvegarder !! sinon erreur
+            existingFac.setDMaj(new Date()); // Défini la date actuelle
 
             zfacRepository.save(existingFac);
             logger.debug("Succès de la mise à jour de la ZFac");
