@@ -17,7 +17,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 import java.util.Date;
 import java.util.Optional;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/zchercheur")
@@ -33,8 +32,8 @@ public class ZChercheurController {
     }
 
     @PostMapping("/ajouter")
-    public ResponseEntity<?> ajouterChercheur(@RequestBody ZChercheur zchercheur, UriComponentsBuilder builder) {
-        logger.info("Tentative d'ajout d'un nouveau chercheur avec l'ID : " + zchercheur.getIdche());
+    public ResponseEntity<?> ajouterZChercheur(@RequestBody ZChercheur zchercheur, UriComponentsBuilder builder) {
+        logger.info("Tentative d'ajout d'un nouveau zchercheur avec l'ID : " + zchercheur.getIdche());
 
         // Affecter un nouvel ID unique en utilisant le compteur
         zchercheur.setIdche(currentId++); // Utilisation du compteur et incrémentation
@@ -48,14 +47,14 @@ public class ZChercheurController {
 
 
     @GetMapping("/liste")
-    public Page<ZChercheur> listeChercheurs(Pageable pageable) {
-        logger.info("Tentative de récupération d'une liste paginée de chercheurs.");
+    public Page<ZChercheur> listeZChercheurs(Pageable pageable) {
+        logger.info("Tentative de récupération d'une liste paginée de zchercheurs.");
         return zchercheurRepository.findAll(pageable);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> supprimerChercheur(@PathVariable int id) {
-        logger.info("Tentative de suppression d'un chercheur avec l'ID : " + id);
+    public ResponseEntity<?> supprimerZChercheur(@PathVariable int id) {
+        logger.info("Tentative de suppression d'un zchercheur avec l'ID : " + id);
         zchercheurRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
@@ -75,33 +74,33 @@ public class ZChercheurController {
     }*/
 
     @PutMapping("/{id}")
-    public ResponseEntity<ZChercheur> modifierChercheur(@PathVariable int id, @RequestBody ZChercheur updatedChercheur) {
-        logger.info("Tentative de mise à jour d'un chercheur avec l'ID : " + id);
+    public ResponseEntity<ZChercheur> modifierZChercheur(@PathVariable int id, @RequestBody ZChercheur updatedZChercheur) {
+        logger.info("Tentative de mise à jour d'un zchercheur avec l'ID : " + id);
 
-        Optional<ZChercheur> optionalChercheur = zchercheurRepository.findById(id);
-        if (optionalChercheur.isPresent()) {
-            ZChercheur existingChercheur = optionalChercheur.get();
+        Optional<ZChercheur> optionalZChercheur = zchercheurRepository.findById(id);
+        if (optionalZChercheur.isPresent()) {
+            ZChercheur existingChercheur = optionalZChercheur.get();
 
             // Mettre à jour les champs modifiables
-            existingChercheur.setNom(updatedChercheur.getNom());
-            existingChercheur.setPrenom(updatedChercheur.getPrenom());
-            existingChercheur.setTitre(updatedChercheur.getTitre());
-            existingChercheur.setMatricule(updatedChercheur.getMatricule());
-            existingChercheur.setCpi(updatedChercheur.getCpi());
-            existingChercheur.setTelephone(updatedChercheur.getTelephone());
-            existingChercheur.setEmail(updatedChercheur.getEmail());
-            existingChercheur.setFax(updatedChercheur.getFax());
-            existingChercheur.setSite(updatedChercheur.getSite());
-            existingChercheur.setCorps(updatedChercheur.getCorps());
-            existingChercheur.setCorpsOrdre(updatedChercheur.getCorpsOrdre());
-            existingChercheur.setFacChe(updatedChercheur.getFacChe());
-            existingChercheur.setPrefPublication(updatedChercheur.getPrefPublication());
+            existingChercheur.setNom(updatedZChercheur.getNom());
+            existingChercheur.setPrenom(updatedZChercheur.getPrenom());
+            existingChercheur.setTitre(updatedZChercheur.getTitre());
+            existingChercheur.setMatricule(updatedZChercheur.getMatricule());
+            existingChercheur.setCpi(updatedZChercheur.getCpi());
+            existingChercheur.setTelephone(updatedZChercheur.getTelephone());
+            existingChercheur.setEmail(updatedZChercheur.getEmail());
+            existingChercheur.setFax(updatedZChercheur.getFax());
+            existingChercheur.setSite(updatedZChercheur.getSite());
+            existingChercheur.setCorps(updatedZChercheur.getCorps());
+            existingChercheur.setCorpsOrdre(updatedZChercheur.getCorpsOrdre());
+            existingChercheur.setFacChe(updatedZChercheur.getFacChe());
+            existingChercheur.setPrefPublication(updatedZChercheur.getPrefPublication());
 
             zchercheurRepository.save(existingChercheur);
-            logger.debug("Succès de la mise à jour du chercheur");
+            logger.debug("Succès de la mise à jour du zchercheur");
             return ResponseEntity.ok(existingChercheur);
         } else {
-            logger.debug("Échec, chercheur introuvable");
+            logger.debug("Échec, zchercheur introuvable");
             return ResponseEntity.notFound().build();
         }
     }

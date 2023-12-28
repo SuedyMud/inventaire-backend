@@ -10,6 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
+import java.util.Date;
+import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/api/zfac") // Modification du mapping
@@ -24,26 +28,61 @@ public class ZFacController {
         this.zfacRepository = zfacRepository; // Modification de l'assignation
     }
 
-    /*
+
     @PostMapping("/ajouter")
-    public ResponseEntity<?> ajouterFac(@RequestBody ZFac zFac, UriComponentsBuilder builder) { // Modification du nom du paramètre
-        logger.info("Tentative d'ajout d'une nouvelle Fac avec l'ID : " + zFac.getIdche()); // Modification du nom de l'objet
+    public ResponseEntity<?> ajouterZFac(@RequestBody ZFac zfac, UriComponentsBuilder builder) {
+        logger.info("Tentative d'ajout d'une nouvelle ZFac avec l'ID : " + zfac.getFac());
 
         // Affecter un nouvel ID unique en utilisant le compteur
-        zFac.setIdche(currentId++); // Utilisation du compteur et incrémentation
-        zFac.setDDig(new Date()); // Définir la date actuelle
+        zfac.setFac(String.valueOf(currentId++)); // Conversion de l'ID en chaîne de caractères et incrémentation
+        zfac.setDMaj(new Date()); // Définir la date actuelle
+        zfacRepository.save(zfac);
 
-        zFacRepository.save(zFac); // Modification du nom de la variable
+        URI localisation = builder.path("/api/zfac/{id}").buildAndExpand(zfac.getFac()).toUri();
+        return ResponseEntity.created(localisation).body(zfac);
+    }
 
-        URI localisation = builder.path("/api/zfac/{id}").buildAndExpand(zFac.getIdche()).toUri(); // Modification du mapping
-        return ResponseEntity.created(localisation).body(zFac); // Modification du nom de l'objet
-    }*/
 
     @GetMapping("/liste")
-    public Page<ZFac> listeFac(Pageable pageable) { // Modification du nom de la méthode et du type de retour
-        logger.info("Tentative de récupération d'une liste paginée de Facs."); // Modification du nom de l'objet
+    public Page<ZFac> listeZFac(Pageable pageable) { // Modification du nom de la méthode et du type de retour
+        logger.info("Tentative de récupération d'une liste paginée de ZFacs."); // Modification du nom de l'objet
         return zfacRepository.findAll(pageable); // Modification du nom de la variable
     }
 
-    // ... (autres méthodes)
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> supprimerZFac(@PathVariable String fac) {
+        logger.info("Tentative de suppression d'un zfac avec FAC : " + fac);
+        zfacRepository.deleteById(fac);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ZFac> modifierZFac(@PathVariable String id, @RequestBody ZFac updatedZFac) {
+        logger.info("Tentative de mise à jour d'une ZFac avec l'ID : " + id);
+
+        Optional<ZFac> optionalZFac = zfacRepository.findById(id);
+        if (optionalZFac.isPresent()) {
+            ZFac existingFac = optionalZFac.get();
+
+            // Mettre à jour les champs
+            existingFac.setFaculte(updatedZFac.getFaculte());
+            existingFac.setFaculteUK(updatedZFac.getFaculteUK());
+            existingFac.setSigle(updatedZFac.getSigle());
+            existingFac.setDMaj(updatedZFac.getDMaj());
+            existingFac.setCc(updatedZFac.getCc());
+            existingFac.setInfofin(updatedZFac.getInfofin());
+            existingFac.setIdFac(updatedZFac.getIdFac());
+            existingFac.setActif(updatedZFac.getActif());
+            existingFac.setGroupe(updatedZFac.getGroupe());
+            existingFac.setInvent20(updatedZFac.getInvent20());
+
+            zfacRepository.save(existingFac);
+            logger.debug("Succès de la mise à jour de la ZFac");
+            return ResponseEntity.ok(existingFac);
+        } else {
+            logger.debug("Échec, ZFac introuvable");
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }
