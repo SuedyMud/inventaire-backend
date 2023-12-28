@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 /*import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;*/
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -30,25 +31,6 @@ public class ZChercheurController {
     public ZChercheurController(ZChercheurRepository zchercheurRepository) {
         this.zchercheurRepository = zchercheurRepository;
     }
-/*
-    @PostMapping("/ajouter")
-    public ResponseEntity<?> ajouterChercheur(@RequestBody ZChercheur zchercheur, Authentication authentication, UriComponentsBuilder builder) {
-        if (hasAuthority(authentication, "SCOPE_write:information")) {
-            logger.info("Tentative d'ajout d'un nouveau chercheur avec l'ID : " + zchercheur.getIdche());
-
-            // Générer un nouvel ID pour le chercheur
-            zchercheur.setIdche(UUID.randomUUID());
-            zchercheur.setDDig(new Date()); // Définir la date actuelle
-
-            zchercheurRepository.save(chercheur);
-
-            URI localisation = builder.path("/api/chercheurs/{id}").buildAndExpand(chercheur.getIdche()).toUri();
-            return ResponseEntity.created(localisation).body(chercheur);
-        } else {
-            logger.debug("Accès refusé ! L'utilisateur n'a pas la permission d'ajouter un nouveau chercheur.");
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
-    }*/
 
     @PostMapping("/ajouter")
     public ResponseEntity<?> ajouterChercheur(@RequestBody ZChercheur zchercheur, UriComponentsBuilder builder) {
@@ -65,26 +47,66 @@ public class ZChercheurController {
     }
 
 
-
     @GetMapping("/liste")
     public Page<ZChercheur> listeChercheurs(Pageable pageable) {
         logger.info("Tentative de récupération d'une liste paginée de chercheurs.");
         return zchercheurRepository.findAll(pageable);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> supprimerChercheur(@PathVariable int id) {
+        logger.info("Tentative de suppression d'un chercheur avec l'ID : " + id);
+        zchercheurRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    //pour après lorque je vais ajouter les permissions
     /*
     @DeleteMapping("/{id}")
     public ResponseEntity<?> supprimerChercheur(@PathVariable int id, Authentication authentication) {
         if (hasAuthority(authentication, "SCOPE_write:information")) {
             logger.info("Tentative de suppression d'un chercheur avec l'ID : " + id);
-            chercheurRepository.deleteById(id);
+            zchercheurRepository.deleteById(id);
             return ResponseEntity.noContent().build();
         } else {
             logger.debug("Accès refusé ! L'utilisateur n'a pas la permission de supprimer un chercheur.");
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
+    }*/
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ZChercheur> modifierChercheur(@PathVariable int id, @RequestBody ZChercheur updatedChercheur) {
+        logger.info("Tentative de mise à jour d'un chercheur avec l'ID : " + id);
+
+        Optional<ZChercheur> optionalChercheur = zchercheurRepository.findById(id);
+        if (optionalChercheur.isPresent()) {
+            ZChercheur existingChercheur = optionalChercheur.get();
+
+            // Mettre à jour les champs modifiables
+            existingChercheur.setNom(updatedChercheur.getNom());
+            existingChercheur.setPrenom(updatedChercheur.getPrenom());
+            existingChercheur.setTitre(updatedChercheur.getTitre());
+            existingChercheur.setMatricule(updatedChercheur.getMatricule());
+            existingChercheur.setCpi(updatedChercheur.getCpi());
+            existingChercheur.setTelephone(updatedChercheur.getTelephone());
+            existingChercheur.setEmail(updatedChercheur.getEmail());
+            existingChercheur.setFax(updatedChercheur.getFax());
+            existingChercheur.setSite(updatedChercheur.getSite());
+            existingChercheur.setCorps(updatedChercheur.getCorps());
+            existingChercheur.setCorpsOrdre(updatedChercheur.getCorpsOrdre());
+            existingChercheur.setFacChe(updatedChercheur.getFacChe());
+            existingChercheur.setPrefPublication(updatedChercheur.getPrefPublication());
+
+            zchercheurRepository.save(existingChercheur);
+            logger.debug("Succès de la mise à jour du chercheur");
+            return ResponseEntity.ok(existingChercheur);
+        } else {
+            logger.debug("Échec, chercheur introuvable");
+            return ResponseEntity.notFound().build();
+        }
     }
 
+    /*
     @PutMapping("/{id}")
     public ResponseEntity<ZChercheur> modifierChercheur(@PathVariable int id, @RequestBody ZChercheur updatedChercheur, Authentication authentication) {
         if (hasAuthority(authentication, "SCOPE_write:information")) {

@@ -12,11 +12,6 @@ public interface  ZChercheurRepository extends JpaRepository<ZChercheur, Integer
    @Query("select zc from ZChercheur zc")
     Page<ZChercheur> findZChercheur(Pageable pageable);
 
-    /*
-    // Add a new query method to find persons by status
-    @Query("SELECT p FROM Personne p WHERE p.status = ?1")
-    Page<ZChercheur> findByStatus(String status, Pageable pageable);*/
-
    List<ZChercheur> findAll();
    
 }

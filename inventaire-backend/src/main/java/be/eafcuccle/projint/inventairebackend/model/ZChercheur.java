@@ -57,4 +57,43 @@ public class ZChercheur {
     private String prefPublication;
 
     // Getters et setters avec data
+
+
+    public ZChercheur() {
+    }
+
+    public ZChercheur(String nom, String prenom, String titre, String matricule, String cpi, String telephone, String email, String fax, String site, String corps, int corpsOrdre, Date dDig, String facChe, String prefPublication) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.titre = titre;
+        this.matricule = matricule;
+        this.cpi = cpi;
+        this.telephone = telephone;
+        this.email = email;
+        this.fax = fax;
+        this.site = site;
+        this.corps = corps;
+        this.corpsOrdre = corpsOrdre;
+        this.dDig = dDig;
+        this.facChe = facChe;
+        this.prefPublication = prefPublication;
+    }
+
+    public ZChercheur(int idche, String nom, String prenom, String titre, String matricule, String cpi, String telephone, String email, String fax, String site, String corps, int corpsOrdre, Date dDig, String facChe, String prefPublication) {
+        this.idche = idche;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.titre = titre;
+        this.matricule = matricule;
+        this.cpi = cpi;
+        this.telephone = telephone;
+        this.email = email;
+        this.fax = fax;
+        this.site = site;
+        this.corps = corps;
+        this.corpsOrdre = corpsOrdre;
+        this.dDig = dDig;
+        this.facChe = facChe;
+        this.prefPublication = prefPublication;
+    }
 }
