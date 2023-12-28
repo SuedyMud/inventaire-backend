@@ -93,8 +93,13 @@ public class ZChercheurController {
             existingChercheur.setSite(updatedZChercheur.getSite());
             existingChercheur.setCorps(updatedZChercheur.getCorps());
             existingChercheur.setCorpsOrdre(updatedZChercheur.getCorpsOrdre());
+
+            // Ne pas oublier de valeur dMaj avant de sauvegarder !! sinon erreur
+            existingChercheur.setDDig(new Date()); // Défini la date actuelle
+
             existingChercheur.setFacChe(updatedZChercheur.getFacChe());
             existingChercheur.setPrefPublication(updatedZChercheur.getPrefPublication());
+
 
             zchercheurRepository.save(existingChercheur);
             logger.debug("Succès de la mise à jour du zchercheur");
