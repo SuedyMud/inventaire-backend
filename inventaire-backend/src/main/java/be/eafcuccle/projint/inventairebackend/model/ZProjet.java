@@ -57,4 +57,43 @@ public class ZProjet {
     private String fromCv;
 
     // Getters et setters avec data
+
+
+    public ZProjet() {
+    }
+
+    public ZProjet(String nom, String nomUK, String nomprogramme, String nomprogrammeUK, String resume, String resumeUK, Date datedebut, Date datefin, Date datemaj, int ordre, String site, String dDebut, String dFin, String fromCv) {
+        this.nom = nom;
+        this.nomUK = nomUK;
+        this.nomprogramme = nomprogramme;
+        this.nomprogrammeUK = nomprogrammeUK;
+        this.resume = resume;
+        this.resumeUK = resumeUK;
+        this.datedebut = datedebut;
+        this.datefin = datefin;
+        this.datemaj = datemaj;
+        this.ordre = ordre;
+        this.site = site;
+        this.dDebut = dDebut;
+        this.dFin = dFin;
+        this.fromCv = fromCv;
+    }
+
+    public ZProjet(int idprojet, String nom, String nomUK, String nomprogramme, String nomprogrammeUK, String resume, String resumeUK, Date datedebut, Date datefin, Date datemaj, int ordre, String site, String dDebut, String dFin, String fromCv) {
+        this.idprojet = idprojet;
+        this.nom = nom;
+        this.nomUK = nomUK;
+        this.nomprogramme = nomprogramme;
+        this.nomprogrammeUK = nomprogrammeUK;
+        this.resume = resume;
+        this.resumeUK = resumeUK;
+        this.datedebut = datedebut;
+        this.datefin = datefin;
+        this.datemaj = datemaj;
+        this.ordre = ordre;
+        this.site = site;
+        this.dDebut = dDebut;
+        this.dFin = dFin;
+        this.fromCv = fromCv;
+    }
 }
