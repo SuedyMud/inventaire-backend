@@ -26,7 +26,7 @@ public class ZUniteController {
     public ZUniteController(ZUniteRepository zuniteRepository) {
         this.zuniteRepository = zuniteRepository;
     }
-/*
+
     @PostMapping("/ajouter")
     public ResponseEntity<?> ajouterZUnite(@RequestBody ZUnite zunite, UriComponentsBuilder builder) {
         logger.info("Tentative d'ajout d'une nouvelle ZUnite avec l'ID : " + zunite.getIdunite());
@@ -39,14 +39,14 @@ public class ZUniteController {
 
         URI localisation = builder.path("/api/zunite/{id}").buildAndExpand(zunite.getIdunite()).toUri();
         return ResponseEntity.created(localisation).body(zunite);
-    }*/
+    }
 
     @GetMapping("/liste")
     public Page<ZUnite> listeZUnites(Pageable pageable) {
         logger.info("Tentative de récupération d'une liste paginée de ZUnites.");
         return zuniteRepository.findAll(pageable);
     }
-/*
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> supprimerZUnite(@PathVariable String id) {
         logger.info("Tentative de suppression d'une ZUnite avec l'ID : " + id);
@@ -105,6 +105,6 @@ public class ZUniteController {
             logger.debug("Échec, ZUnite introuvable");
             return ResponseEntity.notFound().build();
         }
-    }*/
+    }
 
 }
