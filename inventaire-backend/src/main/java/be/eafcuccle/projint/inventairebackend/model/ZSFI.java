@@ -25,4 +25,23 @@ public class ZSFI {
     private int ordre;
 
     // Getters et setters avec data
+
+
+    public ZSFI() {
+    }
+
+    public ZSFI(String depart, String departUK, String reffac, int ordre) {
+        this.depart = depart;
+        this.departUK = departUK;
+        this.reffac = reffac;
+        this.ordre = ordre;
+    }
+
+    public ZSFI(int iddepart, String depart, String departUK, String reffac, int ordre) {
+        this.iddepart = iddepart;
+        this.depart = depart;
+        this.departUK = departUK;
+        this.reffac = reffac;
+        this.ordre = ordre;
+    }
 }
