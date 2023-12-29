@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "ZDiscipCref")
+@Table(name = "ZDiscipcref") //attention ZDiscipcref n'est pas identique a ZDiscipCref (la DB comprend zdiscip_cref dans ce cas)
 public class ZDiscipCref {
 
     @Id
@@ -19,4 +19,19 @@ public class ZDiscipCref {
     private String disciplineUK;
 
     // Getters et setters avec data
+
+
+    public ZDiscipCref() {
+    }
+
+    public ZDiscipCref(String discipline, String disciplineUK) {
+        this.discipline = discipline;
+        this.disciplineUK = disciplineUK;
+    }
+
+    public ZDiscipCref(String idcodecref, String discipline, String disciplineUK) {
+        this.idcodecref = idcodecref;
+        this.discipline = discipline;
+        this.disciplineUK = disciplineUK;
+    }
 }

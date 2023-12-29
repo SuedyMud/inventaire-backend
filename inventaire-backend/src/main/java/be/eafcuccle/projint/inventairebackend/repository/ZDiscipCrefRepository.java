@@ -12,10 +12,5 @@ public interface ZDiscipCrefRepository extends JpaRepository<ZDiscipCref, String
     @Query("select zdc from ZDiscipCref zdc")
     Page<ZDiscipCref> findZDiscipCref(Pageable pageable);
 
-    /*
-    // Add a new query method to find persons by status
-    @Query("SELECT p FROM Personne p WHERE p.status = ?1")
-    Page<ZDiscipCref> findByStatus(String status, Pageable pageable);*/
-
     List<ZDiscipCref> findAll();
 }
