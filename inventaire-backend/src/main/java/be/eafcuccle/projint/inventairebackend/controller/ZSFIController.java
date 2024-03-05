@@ -27,6 +27,7 @@ public class ZSFIController {
     public ZSFIController(ZSFIRepository zsfiRepository) {
         this.zsfiRepository = zsfiRepository;
     }
+
     @PostMapping("/ajouter")
     public ResponseEntity<?> ajouterZSFI(@RequestBody ZSFI zsfi, UriComponentsBuilder builder) {
         logger.info("Tentative d'ajout d'un nouveau ZSFI avec l'ID : " + zsfi.getIddepart());
@@ -52,6 +53,7 @@ public class ZSFIController {
         zsfiRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<ZSFI> modifierZSFI(@PathVariable int id, @RequestBody ZSFI updatedSFI) {

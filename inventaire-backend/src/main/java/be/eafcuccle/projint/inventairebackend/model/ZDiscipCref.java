@@ -5,7 +5,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "ZDiscipcref") //attention ZDiscipcref n'est pas identique a ZDiscipCref (la DB comprend zdiscip_cref dans ce cas)
+@Table(name = "ZDiscipcref")
+//attention ZDiscipcref n'est pas identique a ZDiscipCref (la DB comprend zdiscip_cref dans ce cas)
 public class ZDiscipCref {
 
     @Id
@@ -19,7 +20,6 @@ public class ZDiscipCref {
     private String disciplineUK;
 
     // Getters et setters avec data
-
 
     public ZDiscipCref() {
     }
