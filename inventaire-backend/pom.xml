@@ -35,10 +35,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
 
 		<!--<dependency>
 		a ajouté plus tard pour permettre le sécurité l'authentification (401 Unauthorized)
@@ -109,9 +105,14 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<!-- Spécifier la classe principale -->
+					<mainClass>be.eafcuccle.projint.inventairebackend.Application</mainClass>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+
 
 
 
