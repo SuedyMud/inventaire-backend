@@ -9,8 +9,12 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface ZFrascatiRepository extends JpaRepository<ZFrascati, String> {
-    @Query("select zf from ZFrascati zf")
-    Page<ZFrascati> findZFrascati(Pageable pageable);
+    /*@Query("select zf from ZFrascati zf")
+    Page<ZFrascati> findZFrascati(Pageable pageable);*/
+
+    Page<ZFrascati> findAll(Pageable pageable);
+
 
     List<ZFrascati> findAll();
+
 }
