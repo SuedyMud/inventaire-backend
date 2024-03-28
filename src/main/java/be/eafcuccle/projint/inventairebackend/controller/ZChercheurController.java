@@ -52,6 +52,8 @@ public class ZChercheurController {
         return zchercheurRepository.findAll(pageable);
     }
 
+
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> supprimerZChercheur(@PathVariable int id) {
         logger.info("Tentative de suppression d'un zchercheur avec l'ID : " + id);
@@ -72,6 +74,29 @@ public class ZChercheurController {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
     }*/
+
+    @GetMapping("/{id}")
+    @ResponseBody
+    public ResponseEntity<ZChercheur> detailZChercheur(@PathVariable int id) {
+        logger.info("Tentative de  récupération du détail d'un zchercheur avec l'ID : " + id);
+
+        Optional<ZChercheur> optionalZChercheur = zchercheurRepository.findById(id);
+        if (optionalZChercheur.isPresent()) {
+            logger.debug("Succès du détail du zchercheur avec l'ID : " + id);
+            return ResponseEntity.ok(optionalZChercheur.get());
+        } else {
+            logger.debug("ZChercheur introuvable avec l'ID : " + id);
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
+    /*@GetMapping("/liste")
+    public Page<ZChercheur> listeZChercheurs(Pageable pageable) {
+        logger.info("Tentative de récupération d'une liste paginée de zchercheurs.");
+        return zchercheurRepository.findAll(pageable);
+    }
+*/
 
     @PutMapping("/{id}")
     public ResponseEntity<ZChercheur> modifierZChercheur(@PathVariable int id, @RequestBody ZChercheur updatedZChercheur) {
@@ -99,6 +124,7 @@ public class ZChercheurController {
 
             existingChercheur.setFacChe(updatedZChercheur.getFacChe());
             existingChercheur.setPrefPublication(updatedZChercheur.getPrefPublication());
+
 
 
             zchercheurRepository.save(existingChercheur);

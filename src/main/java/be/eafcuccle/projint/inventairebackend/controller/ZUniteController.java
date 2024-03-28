@@ -1,5 +1,6 @@
 package be.eafcuccle.projint.inventairebackend.controller;
 
+import be.eafcuccle.projint.inventairebackend.model.ZChercheur;
 import be.eafcuccle.projint.inventairebackend.model.ZUnite;
 import be.eafcuccle.projint.inventairebackend.repository.ZUniteRepository;
 import org.slf4j.Logger;
@@ -53,6 +54,23 @@ public class ZUniteController {
         zuniteRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/{id}")
+    @ResponseBody
+    public ResponseEntity<ZUnite> detailZUnite(@PathVariable String id) {
+        logger.info("Tentative de récupération d'un ZUnite avec l'ID : " + id);
+
+        Optional<ZUnite> optionalZUnite = zuniteRepository.findById(id);
+        if (optionalZUnite.isPresent()) {
+            ZUnite existingUnite = optionalZUnite.get();
+            logger.debug("Succès du détail de la ZUnite avec l'ID : " + id);
+            return ResponseEntity.ok(existingUnite);
+        } else {
+            logger.debug("ZUnite introuvable avec l'ID : " + id);
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<ZUnite> modifierZUnite(@PathVariable String id, @RequestBody ZUnite updatedZUnite) {
