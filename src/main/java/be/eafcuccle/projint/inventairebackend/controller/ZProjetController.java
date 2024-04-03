@@ -1,5 +1,6 @@
 package be.eafcuccle.projint.inventairebackend.controller;
 
+import be.eafcuccle.projint.inventairebackend.model.ZChercheur;
 import be.eafcuccle.projint.inventairebackend.model.ZProjet;
 import be.eafcuccle.projint.inventairebackend.repository.ZProjetRepository;
 import org.slf4j.Logger;
@@ -53,6 +54,22 @@ public class ZProjetController {
         zprojetRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/{id}")
+    @ResponseBody
+    public ResponseEntity<ZProjet> detailZProjet(@PathVariable int id) {
+        logger.info("Tentative de récupération du détail d'un ZProjet avec l'ID : " + id);
+
+        Optional<ZProjet> optionalZProjet = zprojetRepository.findById(id);
+        if (optionalZProjet.isPresent()) {
+            logger.debug("Succès du détail du ZProjet avec l'ID : " + id);
+            return ResponseEntity.ok(optionalZProjet.get());
+        } else {
+            logger.debug("ZProjet introuvable avec l'ID : " + id);
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<ZProjet> modifierZProjet(@PathVariable int id, @RequestBody ZProjet updatedZProjet) {
