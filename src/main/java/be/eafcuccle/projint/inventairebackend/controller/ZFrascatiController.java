@@ -50,6 +50,26 @@ public class ZFrascatiController {
         zfrascatiRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/{id}")
+    @ResponseBody
+    public ResponseEntity<ZFrascati> detailZFrascati(@PathVariable String id) {
+        logger.info("Tentative de récupération du détail d'un ZFrascati avec l'ID : " + id);
+
+        // Récupération du ZFrascati correspondant à l'ID
+        Optional<ZFrascati> optionalZFrascati = zfrascatiRepository.findById(id);
+
+        // Vérification de l'existence du ZFrascati
+        if (optionalZFrascati.isPresent()) {
+            logger.debug("Succès du détail du ZFrascati avec l'ID : " + id);
+            return ResponseEntity.ok(optionalZFrascati.get());
+        } else {
+            logger.debug("ZFrascati introuvable avec l'ID : " + id);
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
     @PutMapping("/{id}")
     public ResponseEntity<ZFrascati> modifierFrascati(@PathVariable String id, @RequestBody ZFrascati updatedFrascati) {
         logger.info("Tentative de mise à jour d'un Frascati avec l'ID : " + id);
