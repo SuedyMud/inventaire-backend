@@ -26,6 +26,7 @@ public class ZUComposController {
         this.zuComposRepository = zuComposRepository;
     }
 
+    /*
     @PostMapping("/ajouter")
     public ResponseEntity<?> ajouterZUCompos(@RequestBody ZUCompos zuCompos, UriComponentsBuilder builder) {
         logger.info("Tentative d'ajout d'un nouveau ZUCompos avec la référence : " + zuCompos.getRefunite());
@@ -92,5 +93,5 @@ public class ZUComposController {
             logger.debug("Échec, ZUCompos introuvable");
             return ResponseEntity.notFound().build();
         }
-    }
+    }*/
 }

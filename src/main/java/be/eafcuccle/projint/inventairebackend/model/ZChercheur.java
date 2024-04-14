@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -55,6 +56,11 @@ public class ZChercheur {
 
     @Column(name = "PrefPublication", length = 5000, columnDefinition = "varchar(5000) default 'integree'")
     private String prefPublication;
+
+    @OneToMany(mappedBy = "zchercheur")
+    private List<ZUCompos> composList;
+
+
 
     // Getters et setters avec data
 

@@ -10,12 +10,23 @@ import java.util.Date;
 @Table(name = "ZUCompos")
 public class ZUCompos {
 
-    @Id
-    @Column(name = "Refunite", length = 6, nullable = false)
-    private String refunite;
 
-    @Column(name = "Refche", nullable = false)
-    private int refche;
+    @EmbeddableId
+    private ZUComposId id;
+
+    /*@Column(name = "Refunite", length = 6, nullable = false)
+    private String refunite;*/
+
+    @ManyToOne
+    @JoinColumn(name = "refunite", referencedColumnName = "idunite", nullable = false)
+    private ZUnite zunite;
+
+    /*@Column(name = "Refche", nullable = false)
+    private int refche;*/
+
+    @ManyToOne
+    @JoinColumn(name = "refche", referencedColumnName = "idche", nullable = false)
+    private ZChercheur zchercheur;
 
     @Column(name = "Responsable", length = 3, nullable = false, columnDefinition = "varchar(3) COMMENT 'Dec : décédé Dci : délégué interne Dce : délégué externe'")
     private String responsable;

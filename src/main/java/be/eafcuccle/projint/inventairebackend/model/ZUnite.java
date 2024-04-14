@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -115,6 +116,10 @@ public class ZUnite {
 
     @Column(name = "Niveau", length = 10, columnDefinition = "varchar(10) default null comment 'Dans repertoire : 2 => niveau SFI, 3 => niveau unité'")
     private String niveau;
+
+    @OneToMany(mappedBy = "zunite")
+    private List<ZUCompos> composList;
+
 
     // Getters et setters avec data
 
