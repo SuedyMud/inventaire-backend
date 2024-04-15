@@ -1,6 +1,3 @@
-package be.eafcuccle.projint.inventairebackend.controller;
-
-import be.eafcuccle.projint.inventairebackend.model.ZChercheur;
 import be.eafcuccle.projint.inventairebackend.model.ZUnite;
 import be.eafcuccle.projint.inventairebackend.repository.ZUniteRepository;
 import org.slf4j.Logger;

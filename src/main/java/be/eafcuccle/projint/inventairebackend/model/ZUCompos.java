@@ -10,8 +10,7 @@ import java.util.Date;
 @Table(name = "ZUCompos")
 public class ZUCompos {
 
-
-    @EmbeddableId
+    @EmbeddedId
     private ZUComposId id;
 
     /*@Column(name = "Refunite", length = 6, nullable = false)

@@ -164,7 +164,8 @@ public class ZUnite {
         this.niveau = niveau;
     }
 
-    public ZUnite(String idunite, int istrans, String preflang, String nom, String nomUK, String sigle, String description, String descriptionUK, String rue, String numero, String boite, String localite, String codepostal, String cpi, String localisation, String telephone, String fax, String email, String site1, String site2, String lienthese, String lienpublica, Date datedeb, Date datefin, Date datemaj, String remarque, int nbvisit, String brouillon, String prefPublication, int statExport, int statProjetcv, int statAnciensmembres, int statDelegue, int statAdzion, String niveau) {
+
+    public ZUnite(String idunite, int istrans, String preflang, String nom, String nomUK, String sigle, String description, String descriptionUK, String rue, String numero, String boite, String localite, String codepostal, String cpi, String localisation, String telephone, String fax, String email, String site1, String site2, String lienthese, String lienpublica, Date datedeb, Date datefin, Date datemaj, String remarque, int nbvisit, String brouillon, String prefPublication, int statExport, int statProjetcv, int statAnciensmembres, int statDelegue, int statAdzion, String niveau, List<ZUCompos> composList) {
         this.idunite = idunite;
         this.istrans = istrans;
         this.preflang = preflang;
@@ -200,5 +201,6 @@ public class ZUnite {
         this.statDelegue = statDelegue;
         this.statAdzion = statAdzion;
         this.niveau = niveau;
+        this.composList = composList;
     }
 }
