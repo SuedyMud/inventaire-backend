@@ -1,5 +1,9 @@
+package be.eafcuccle.projint.inventairebackend.controller;
+
+import be.eafcuccle.projint.inventairebackend.model.ZUCompos;
 import be.eafcuccle.projint.inventairebackend.model.ZUnite;
 import be.eafcuccle.projint.inventairebackend.repository.ZUniteRepository;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -10,8 +14,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
+@JsonSerialize
 @RestController
 @RequestMapping("/api/zunite")
 public class ZUniteController {
@@ -43,6 +49,23 @@ public class ZUniteController {
     public Page<ZUnite> listeZUnites(Pageable pageable) {
         logger.info("Tentative de récupération d'une liste paginée de ZUnites.");
         return zuniteRepository.findAll(pageable);
+    }
+
+
+    // Ajoutez une méthode pour récupérer les composants d'une unité spécifique
+    @GetMapping("/compos/{id}")
+    public ResponseEntity<List<ZUCompos>> getComposOfUnite(@PathVariable String id) {
+        logger.info("Tentative de récupération des composants de l'unité avec l'ID : " + id);
+
+        Optional<ZUnite> optionalZUnite = zuniteRepository.findById(id);
+        if (optionalZUnite.isPresent()) {
+            ZUnite unite = optionalZUnite.get();
+            List<ZUCompos> composList = unite.getComposList();
+            return ResponseEntity.ok(composList);
+        } else {
+            logger.debug("Unité introuvable avec l'ID : " + id);
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/{id}")
@@ -121,5 +144,4 @@ public class ZUniteController {
             return ResponseEntity.notFound().build();
         }
     }
-
 }

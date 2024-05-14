@@ -1,5 +1,7 @@
 package be.eafcuccle.projint.inventairebackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -118,6 +120,7 @@ public class ZUnite {
     private String niveau;
 
     @OneToMany(mappedBy = "zunite")
+    @JsonIgnore
     private List<ZUCompos> composList;
 
 

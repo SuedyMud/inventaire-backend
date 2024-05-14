@@ -1,3 +1,5 @@
+package be.eafcuccle.projint.inventairebackend.controller;
+
 import be.eafcuccle.projint.inventairebackend.model.ZChercheur;
 import be.eafcuccle.projint.inventairebackend.model.ZUnite;
 import be.eafcuccle.projint.inventairebackend.model.ZUCompos;

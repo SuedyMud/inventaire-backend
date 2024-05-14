@@ -15,4 +15,6 @@ public interface ZUniteRepository extends JpaRepository<ZUnite, String> {
     /*Page<ZUnite> findAll(Pageable pageable);*/
 
     List<ZUnite> findAll();
+
+    List<ZUnite> findAllByComposListIsNotNull();
 }

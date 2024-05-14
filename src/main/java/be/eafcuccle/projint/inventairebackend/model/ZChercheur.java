@@ -1,5 +1,7 @@
 package be.eafcuccle.projint.inventairebackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -12,6 +14,7 @@ import java.util.List;
 public class ZChercheur {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Idche", nullable = false)
     private int idche;
 
@@ -42,22 +45,24 @@ public class ZChercheur {
     @Column(name = "Site", length = 255, nullable = false)
     private String site;
 
-    @Column(name = "Corps", length = 20, nullable = false)
+    @Column(name = "Corps", length = 20/*, nullable = false*/)
     private String corps;
 
-    @Column(name = "CorpsOrdre", nullable = false)
+    @Column(name = "CorpsOrdre"/*, nullable = false*/)
     private int corpsOrdre;
 
-    @Column(name = "DDig", nullable = false, columnDefinition = "datetime default current_timestamp()")
+    @Column(name = "DDig"/*, nullable = false*/, columnDefinition = "datetime default current_timestamp()")
     private Date dDig;
 
-    @Column(name = "FacChe", length = 50, nullable = false, columnDefinition = "varchar(50) default ' '")
+    @Column(name = "FacChe", length = 50/*, nullable = false*/, columnDefinition = "varchar(50) default ' '")
     private String facChe;
 
     @Column(name = "PrefPublication", length = 5000, columnDefinition = "varchar(5000) default 'integree'")
     private String prefPublication;
 
     @OneToMany(mappedBy = "zchercheur")
+    //@JsonManagedReference // Cette annotation aide Jackson à sérialiser cette propriété
+    @JsonIgnore
     private List<ZUCompos> composList;
 
 
@@ -101,5 +106,24 @@ public class ZChercheur {
         this.dDig = dDig;
         this.facChe = facChe;
         this.prefPublication = prefPublication;
+    }
+
+    public ZChercheur(int idche, String nom, String prenom, String titre, String matricule, String cpi, String telephone, String email, String fax, String site, String corps, int corpsOrdre, Date dDig, String facChe, String prefPublication, List<ZUCompos> composList) {
+        this.idche = idche;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.titre = titre;
+        this.matricule = matricule;
+        this.cpi = cpi;
+        this.telephone = telephone;
+        this.email = email;
+        this.fax = fax;
+        this.site = site;
+        this.corps = corps;
+        this.corpsOrdre = corpsOrdre;
+        this.dDig = dDig;
+        this.facChe = facChe;
+        this.prefPublication = prefPublication;
+        this.composList = composList;
     }
 }
