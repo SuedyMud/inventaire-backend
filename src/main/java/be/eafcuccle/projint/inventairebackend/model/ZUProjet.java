@@ -13,5 +13,18 @@ public class ZUProjet {
     @Column(name = "Refprojet", nullable = false)
     private int refprojet;
 
-    // Getters et setters avec data
+/*
+   @Id*//*
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    @Column(name = "id", nullable = false)
+    private int id;
+*//*
+    @ManyToOne
+    @JoinColumn(name = "Refunite", nullable = false)
+    private ZUnite refunite;
+
+    @JoinColumn(name = "Refprojet", nullable = false)
+    private ZProjet refprojet;
+
+    // Getters et setters avec data*/
 }

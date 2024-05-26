@@ -1,9 +1,11 @@
 package be.eafcuccle.projint.inventairebackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -47,53 +49,24 @@ public class ZProjet {
     @Column(name = "Site", length = 255, nullable = false)
     private String site;
 
-    @Column(name = "DDebut", length = 100, nullable = false)
+    @Column(name = "DDebut", length = 100/*, nullable = false*/)
     private String dDebut;
 
-    @Column(name = "DFin", length = 100, nullable = false)
+    @Column(name = "DFin", length = 100/*, nullable = false*/)
     private String dFin;
 
-    @Column(name = "FromCv", length = 25, nullable = false, columnDefinition = "varchar(25) default '0'")
+    @Column(name = "FromCv", length = 25, /*nullable = false,*/ columnDefinition = "varchar(25) default '0'")
     private String fromCv;
 
     // Getters et setters avec data
+
+   /* @JsonIgnore
+    @OneToMany(mappedBy = "refprojet")
+    private List<ZUProjet> zuProjetList;*/
 
 
     public ZProjet() {
     }
 
-    public ZProjet(String nom, String nomUK, String nomprogramme, String nomprogrammeUK, String resume, String resumeUK, Date datedebut, Date datefin, Date datemaj, int ordre, String site, String dDebut, String dFin, String fromCv) {
-        this.nom = nom;
-        this.nomUK = nomUK;
-        this.nomprogramme = nomprogramme;
-        this.nomprogrammeUK = nomprogrammeUK;
-        this.resume = resume;
-        this.resumeUK = resumeUK;
-        this.datedebut = datedebut;
-        this.datefin = datefin;
-        this.datemaj = datemaj;
-        this.ordre = ordre;
-        this.site = site;
-        this.dDebut = dDebut;
-        this.dFin = dFin;
-        this.fromCv = fromCv;
-    }
 
-    public ZProjet(int idprojet, String nom, String nomUK, String nomprogramme, String nomprogrammeUK, String resume, String resumeUK, Date datedebut, Date datefin, Date datemaj, int ordre, String site, String dDebut, String dFin, String fromCv) {
-        this.idprojet = idprojet;
-        this.nom = nom;
-        this.nomUK = nomUK;
-        this.nomprogramme = nomprogramme;
-        this.nomprogrammeUK = nomprogrammeUK;
-        this.resume = resume;
-        this.resumeUK = resumeUK;
-        this.datedebut = datedebut;
-        this.datefin = datefin;
-        this.datemaj = datemaj;
-        this.ordre = ordre;
-        this.site = site;
-        this.dDebut = dDebut;
-        this.dFin = dFin;
-        this.fromCv = fromCv;
-    }
 }

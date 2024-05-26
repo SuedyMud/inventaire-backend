@@ -1,6 +1,7 @@
 package be.eafcuccle.projint.inventairebackend.repository;
 
 
+import be.eafcuccle.projint.inventairebackend.model.ZChercheur;
 import be.eafcuccle.projint.inventairebackend.model.ZUnite;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,4 +18,7 @@ public interface ZUniteRepository extends JpaRepository<ZUnite, String> {
     List<ZUnite> findAll();
 
     List<ZUnite> findAllByComposListIsNotNull();
+
+    @Query("SELECT zuc.zchercheur FROM ZUCompos zuc WHERE zuc.zunite.idunite = :uniteId")
+    List<ZChercheur> findChercheursByUniteId(String uniteId);
 }

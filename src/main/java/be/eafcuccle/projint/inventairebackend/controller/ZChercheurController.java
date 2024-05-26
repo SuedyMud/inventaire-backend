@@ -2,8 +2,10 @@ package be.eafcuccle.projint.inventairebackend.controller;
 
 import be.eafcuccle.projint.inventairebackend.model.ZChercheur;
 import be.eafcuccle.projint.inventairebackend.repository.ZChercheurRepository;
+import be.eafcuccle.projint.inventairebackend.service.ZUniteService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 /*import org.springframework.http.HttpStatus;
@@ -16,6 +18,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -25,6 +28,8 @@ public class ZChercheurController {
     private final Logger logger = LoggerFactory.getLogger(ZChercheurController.class);
 
     private final ZChercheurRepository zchercheurRepository;
+    @Autowired
+    private ZUniteService zuniteService;
     private int currentId = 1; // Initialisation du compteur
 
     public ZChercheurController(ZChercheurRepository zchercheurRepository) {
@@ -134,6 +139,14 @@ public class ZChercheurController {
             logger.debug("Échec, zchercheur introuvable");
             return ResponseEntity.notFound().build();
         }
+
+
+
+    }
+
+    @GetMapping("/zunite/{idUnite}")
+    public List<ZChercheur> getChercheursByUnite(@PathVariable String idUnite) {
+        return zuniteService.getChercheursByUniteId(idUnite);
     }
 
     /*

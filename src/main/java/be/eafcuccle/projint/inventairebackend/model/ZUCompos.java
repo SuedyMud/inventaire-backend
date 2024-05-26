@@ -13,17 +13,15 @@ public class ZUCompos {
     @EmbeddedId
     private ZUComposId id;
 
-    /*@Column(name = "Refunite", length = 6, nullable = false)
-    private String refunite;*/
 
     @ManyToOne
+    @MapsId("zUniteId")
     @JoinColumn(name = "refunite", referencedColumnName = "idunite", nullable = false)
     private ZUnite zunite;
 
-    /*@Column(name = "Refche", nullable = false)
-    private int refche;*/
 
     @ManyToOne
+    @MapsId("zChercheurId")
     @JoinColumn(name = "refche", referencedColumnName = "idche", nullable = false)
     private ZChercheur zchercheur;
 

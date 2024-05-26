@@ -50,30 +50,5 @@ public class ZFac {
     public ZFac() {
     }
 
-    public ZFac(String faculte, String faculteUK, String sigle, Date dMaj, String cc, int infofin, int idFac, int actif, String groupe, int invent20) {
-        this.faculte = faculte;
-        this.faculteUK = faculteUK;
-        this.sigle = sigle;
-        this.dMaj = dMaj;
-        this.cc = cc;
-        this.infofin = infofin;
-        this.idFac = idFac;
-        this.actif = actif;
-        this.groupe = groupe;
-        this.invent20 = invent20;
-    }
 
-    public ZFac(String fac, String faculte, String faculteUK, String sigle, Date dMaj, String cc, int infofin, int idFac, int actif, String groupe, int invent20) {
-        this.fac = fac;
-        this.faculte = faculte;
-        this.faculteUK = faculteUK;
-        this.sigle = sigle;
-        this.dMaj = dMaj;
-        this.cc = cc;
-        this.infofin = infofin;
-        this.idFac = idFac;
-        this.actif = actif;
-        this.groupe = groupe;
-        this.invent20 = invent20;
-    }
 }

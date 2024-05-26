@@ -9,5 +9,12 @@ public class ZUComposId implements Serializable {
     private int zChercheurId;
     private int zUniteId;
 
+    public ZUComposId() {
+    }
+
+    public ZUComposId(int zChercheurId, int zUniteId) {
+        this.zChercheurId = zChercheurId;
+        this.zUniteId = zUniteId;
+    }
     // Getters, setters, equals, hashCode
 }
