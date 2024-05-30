@@ -60,10 +60,10 @@ public class ZUniteController {
         logger.info("Tentative de récupération d'une liste paginée de ZUnites.");
         return zuniteRepository.findAll(pageable);
     }
-/*
-    @GetMapping("/{idcompos}/responsable")
-    public ZChercheur getResponsableUnite(@PathVariable Long idcompos) {
-        ZUCompos responsableCompos = zucomposRepository.findByIdUniteAndResponsable(idcompos, "Oui");
+
+   /* @GetMapping("/{idunite}/responsable")
+    public ZChercheur getResponsableUnite(@PathVariable String idunite) {
+        ZUCompos responsableCompos = zucomposRepository.findByIdAndResponsable(idunite, "Oui");
         return responsableCompos != null ? responsableCompos.getChercheur() : null;
     }*/
 

@@ -33,7 +33,7 @@ public class ZUComposController {
     }
 
 
-  /*  @GetMapping("/unite/{idunite}/chercheurs")
+    /*@GetMapping("/unite/{idunite}/chercheurs")
     public ResponseEntity<List<ZChercheur>> getChercheursByUnite(@PathVariable String idunite) {
         List<ZUCompos> uComposList = zucomposrepository.findByIdUnite(idunite);
         List<ZChercheur> chercheurs = uComposList.stream().map(ZUCompos::getZchercheur).collect(Collectors.toList());
