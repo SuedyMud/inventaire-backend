@@ -3,10 +3,10 @@ package be.eafcuccle.projint.inventairebackend.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
+
 import java.util.Date;
 import java.util.Set;
+
 
 @Data
 @Entity
@@ -16,7 +16,6 @@ public class ZUnite {
     @Id
     @Column(name = "Idunite", length = 10, nullable = false)
     private String idunite;
-
 
     @Column(name = "Istrans", nullable = false)
     private Integer istrans;
@@ -127,6 +126,9 @@ public class ZUnite {
     @Column(name = "Niveau", length = 10, columnDefinition = "varchar(10) default null comment 'Dans repertoire : 2 => niveau SFI, 3 => niveau unité'")
     private String niveau;
 
+
+    @OneToMany(mappedBy = "zunite")
+    Set<ZUCompos> zucompos;
 
     public ZUnite() {
     }

@@ -13,6 +13,7 @@ import java.util.List;
 public class ZProjet {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "Idprojet", nullable = false)
     private int idprojet;
 

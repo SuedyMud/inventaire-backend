@@ -7,6 +7,7 @@ import lombok.Data;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import java.util.Date;
+import java.util.Set;
 
 
 @Data
@@ -15,7 +16,7 @@ import java.util.Date;
 public class ZChercheur {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Idche", length = 10, nullable = false)
     private Integer idche;
 
@@ -77,6 +78,9 @@ public class ZChercheur {
     @Column(name = "PrefPublication", length = 5000, columnDefinition = "varchar(5000) default 'integree'")
     private String prefPublication;
 
+
+    @OneToMany(mappedBy = "zchercheur")
+    Set<ZUCompos> zucompos;
 
     // Getters et setters avec data
 

@@ -1,11 +1,15 @@
 package be.eafcuccle.projint.inventairebackend.controller;
 
+import be.eafcuccle.projint.inventairebackend.model.ZChercheur;
 import be.eafcuccle.projint.inventairebackend.model.ZUCompos;
 import be.eafcuccle.projint.inventairebackend.model.ZUnite;
+import be.eafcuccle.projint.inventairebackend.repository.ZChercheurRepository;
+import be.eafcuccle.projint.inventairebackend.repository.ZUComposRepository;
 import be.eafcuccle.projint.inventairebackend.repository.ZUniteRepository;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +18,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @JsonSerialize
 @RestController
@@ -23,12 +29,16 @@ public class ZUniteController {
 
     private final Logger logger = LoggerFactory.getLogger(ZUniteController.class);
 
-    private final ZUniteRepository zuniteRepository;
+    @Autowired
+    private ZUComposRepository zucomposRepository;
+
     private int currentId = 1; // Initialisation du compteur
 
-    public ZUniteController(ZUniteRepository zuniteRepository) {
-        this.zuniteRepository = zuniteRepository;
-    }
+    @Autowired
+    private ZUniteRepository zuniteRepository;
+
+    @Autowired
+    private ZChercheurRepository zchercheurRepository;
 
     @PostMapping("/ajouter")
     public ResponseEntity<?> ajouterZUnite(@RequestBody ZUnite zunite, UriComponentsBuilder builder) {
@@ -50,6 +60,18 @@ public class ZUniteController {
         logger.info("Tentative de récupération d'une liste paginée de ZUnites.");
         return zuniteRepository.findAll(pageable);
     }
+/*
+    @GetMapping("/{idcompos}/responsable")
+    public ZChercheur getResponsableUnite(@PathVariable Long idcompos) {
+        ZUCompos responsableCompos = zucomposRepository.findByIdUniteAndResponsable(idcompos, "Oui");
+        return responsableCompos != null ? responsableCompos.getChercheur() : null;
+    }*/
+
+ /*   @GetMapping("/{idunite}/chercheurs")
+    public List<ZChercheur> getChercheursByUnite(@PathVariable String idunite) {
+        List<ZUCompos> uComposList = zucomposRepository.findByIdUnite(idunite);
+        return uComposList.stream().map(ZUCompos::getChercheur).collect(Collectors.toList());
+    }*/
 
 
     // Ajoutez une méthode pour récupérer les composants d'une unité spécifique

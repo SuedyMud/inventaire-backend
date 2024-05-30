@@ -11,9 +11,16 @@ import java.util.Date;
 public class ZUCompos {
 
     @Id
-    private String refunite;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String id;
 
-    private Integer refche;
+    @ManyToOne
+    @JoinColumn(name = "refche", referencedColumnName = "idche")
+    private ZChercheur zchercheur;
+
+    @ManyToOne
+    @JoinColumn(name = "refunite", referencedColumnName = "idunite")
+    private ZUnite zunite;
 
     @Column(name = "Responsable", length = 3, nullable = false, columnDefinition = "varchar(3) COMMENT 'Dec : décédé Dci : délégué interne Dce : délégué externe'")
     private String responsable;
@@ -26,6 +33,14 @@ public class ZUCompos {
 
     @Column(name = "Ordre", nullable = false, columnDefinition = "int default 0")
     private int ordre;
+
+    public ZChercheur getChercheur() {
+        return this.zchercheur;
+    }
+
+    public ZUnite getZUnite() {
+        return this.zunite;
+    }
 
 
     // Getters et setters avec data
