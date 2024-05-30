@@ -69,7 +69,7 @@ public class ZChercheurControllerTest {
         when(zchercheurRepository.findAll(pageable)).thenReturn(page);
 
         // Appelle la méthode listeZChercheurs
-        Page<ZChercheur> result = zchercheurController.listeZChercheurs(pageable);
+        Page<ZChercheur> result = zchercheurController.listeZChercheur(pageable);
 
         // Vérifie que la taille de la page retournée est correcte
         assertEquals(1, result.getTotalElements());

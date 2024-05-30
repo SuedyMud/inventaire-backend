@@ -17,8 +17,11 @@ public interface ZUniteRepository extends JpaRepository<ZUnite, String> {
 
     List<ZUnite> findAll();
 
-    List<ZUnite> findAllByComposListIsNotNull();
+    //List<ZUnite> findAllByComposListIsNotNull();
 
-    @Query("SELECT zuc.zchercheur FROM ZUCompos zuc WHERE zuc.zunite.idunite = :uniteId")
-    List<ZChercheur> findChercheursByUniteId(String uniteId);
+    /*@Query("SELECT zuc.zchercheur FROM ZUCompos zuc WHERE zuc.zunite.idunite = :uniteId")
+    List<ZChercheur> findChercheursByUniteId(String uniteId);*/
+
+    //List<ZUnite> findAllByChercheursIsNotNull();
+
 }

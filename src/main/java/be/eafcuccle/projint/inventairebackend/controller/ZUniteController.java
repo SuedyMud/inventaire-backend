@@ -14,7 +14,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 @JsonSerialize
@@ -35,8 +34,9 @@ public class ZUniteController {
     public ResponseEntity<?> ajouterZUnite(@RequestBody ZUnite zunite, UriComponentsBuilder builder) {
         logger.info("Tentative d'ajout d'une nouvelle ZUnite avec l'ID : " + zunite.getIdunite());
 
-        // Affecter un nouvel ID unique en utilisant le compteur
-        zunite.setIdunite(String.valueOf(currentId++)); // Utilisation du compteur et incrémentation
+        // Générer un nouvel ID unique
+        String newId = ZUnite.generateNewId(currentId++);
+        zunite.setIdunite(newId);
         zunite.setDatemaj(new Date()); // Définir la date actuelle
 
         zuniteRepository.save(zunite);
@@ -46,14 +46,14 @@ public class ZUniteController {
     }
 
     @GetMapping("/liste")
-    public Page<ZUnite> listeZUnites(Pageable pageable) {
+    public Page<ZUnite> listeZUnite(Pageable pageable) {
         logger.info("Tentative de récupération d'une liste paginée de ZUnites.");
         return zuniteRepository.findAll(pageable);
     }
 
 
     // Ajoutez une méthode pour récupérer les composants d'une unité spécifique
-    @GetMapping("/compos/{id}")
+   /* @GetMapping("/compos/{id}")
     public ResponseEntity<List<ZUCompos>> getComposOfUnite(@PathVariable String id) {
         logger.info("Tentative de récupération des composants de l'unité avec l'ID : " + id);
 
@@ -66,7 +66,7 @@ public class ZUniteController {
             logger.debug("Unité introuvable avec l'ID : " + id);
             return ResponseEntity.notFound().build();
         }
-    }
+    }*/
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> supprimerZUnite(@PathVariable String id) {

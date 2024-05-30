@@ -2,7 +2,6 @@ package be.eafcuccle.projint.inventairebackend.controller;
 
 import be.eafcuccle.projint.inventairebackend.model.ZChercheur;
 import be.eafcuccle.projint.inventairebackend.repository.ZChercheurRepository;
-import be.eafcuccle.projint.inventairebackend.service.ZUniteService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +27,7 @@ public class ZChercheurController {
     private final Logger logger = LoggerFactory.getLogger(ZChercheurController.class);
 
     private final ZChercheurRepository zchercheurRepository;
-    @Autowired
-    private ZUniteService zuniteService;
+
     private int currentId = 1; // Initialisation du compteur
 
     public ZChercheurController(ZChercheurRepository zchercheurRepository) {
@@ -52,7 +50,7 @@ public class ZChercheurController {
 
 
     @GetMapping("/liste")
-    public Page<ZChercheur> listeZChercheurs(Pageable pageable) {
+    public Page<ZChercheur> listeZChercheur(Pageable pageable) {
         logger.info("Tentative de récupération d'une liste paginée de zchercheurs.");
         return zchercheurRepository.findAll(pageable);
     }
@@ -144,10 +142,7 @@ public class ZChercheurController {
 
     }
 
-    @GetMapping("/zunite/{idUnite}")
-    public List<ZChercheur> getChercheursByUnite(@PathVariable String idUnite) {
-        return zuniteService.getChercheursByUniteId(idUnite);
-    }
+
 
     /*
     @PutMapping("/{id}")

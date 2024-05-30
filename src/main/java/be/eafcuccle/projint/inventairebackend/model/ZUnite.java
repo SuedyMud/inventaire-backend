@@ -1,12 +1,12 @@
 package be.eafcuccle.projint.inventairebackend.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -17,14 +17,17 @@ public class ZUnite {
     @Column(name = "Idunite", length = 10, nullable = false)
     private String idunite;
 
+
     @Column(name = "Istrans", nullable = false)
-    private int istrans;
+    private Integer istrans;
 
     @Column(name = "Preflang", length = 10, nullable = false)
     private String preflang;
 
+
     @Column(name = "Nom", length = 120, nullable = false)
     private String nom;
+
 
     @Column(name = "NomUK", length = 120, nullable = false)
     private String nomUK;
@@ -32,8 +35,10 @@ public class ZUnite {
     @Column(name = "Sigle", length = 20, nullable = false)
     private String sigle;
 
+
     @Column(name = "Description", length = 2500, nullable = false)
     private String description;
+
 
     @Column(name = "DescriptionUK", length = 2500, nullable = false)
     private String descriptionUK;
@@ -80,11 +85,14 @@ public class ZUnite {
     @Column(name = "Lienpublica", length = 120, nullable = false)
     private String lienpublica;
 
+
     @Column(name = "Datedeb", nullable = false)
     private Date datedeb;
 
+
     @Column(name = "Datefin", nullable = false)
     private Date datefin;
+
 
     @Column(name = "Datemaj", nullable = false)
     private Date datemaj;
@@ -93,7 +101,7 @@ public class ZUnite {
     private String remarque;
 
     @Column(name = "Nbvisit", nullable = false)
-    private int nbvisit;
+    private Integer nbvisit;
 
     @Column(name = "Brouillon", length = 500, nullable = false)
     private String brouillon;
@@ -102,35 +110,31 @@ public class ZUnite {
     private String prefPublication;
 
     @Column(name = "statExport", nullable = false, columnDefinition = "int default 0")
-    private int statExport;
+    private Integer statExport;
 
     @Column(name = "statProjetcv", nullable = false, columnDefinition = "int default 0")
-    private int statProjetcv;
+    private Integer statProjetcv;
 
     @Column(name = "statAnciensmembres", nullable = false, columnDefinition = "int default 0")
-    private int statAnciensmembres;
+    private Integer statAnciensmembres;
 
     @Column(name = "statDelegue", nullable = false, columnDefinition = "int default 0")
-    private int statDelegue;
+    private Integer statDelegue;
 
     @Column(name = "statAdzion", nullable = false, columnDefinition = "int default 0")
-    private int statAdzion;
+    private Integer statAdzion;
 
     @Column(name = "Niveau", length = 10, columnDefinition = "varchar(10) default null comment 'Dans repertoire : 2 => niveau SFI, 3 => niveau unité'")
     private String niveau;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "zunite")
-    private List<ZUCompos> composList;
-/*
-    @JsonIgnore
-    @OneToMany(mappedBy = "refunite")
-    private List<ZUProjet> zuProjetList;*/
+
+    public ZUnite() {
+    }
 
     // Getters et setters avec data
 
-
-    public ZUnite() {
+    public static String generateNewId(int currentId) {
+        return "ULB" + String.format("%04d", currentId);
     }
 
 }
