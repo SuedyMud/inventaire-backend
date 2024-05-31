@@ -1,5 +1,6 @@
 package be.eafcuccle.projint.inventairebackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -10,7 +11,7 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "ZUnite")
+@Table(name = "zunite")
 public class ZUnite {
 
     @Id
@@ -23,10 +24,8 @@ public class ZUnite {
     @Column(name = "Preflang", length = 10, nullable = false)
     private String preflang;
 
-
     @Column(name = "Nom", length = 120, nullable = false)
     private String nom;
-
 
     @Column(name = "NomUK", length = 120, nullable = false)
     private String nomUK;
@@ -129,6 +128,21 @@ public class ZUnite {
 
     @OneToMany(mappedBy = "zunite")
     Set<ZUCompos> zucompos;
+
+    @OneToMany(mappedBy = "zunite")
+    Set<ZUProjet> zuprojet;
+
+    @OneToMany(mappedBy = "zunite")
+    Set<ZUFac> zufac;
+
+    @OneToMany(mappedBy = "zunite")
+    Set<ZUFrascati> zufrascati;
+
+    @OneToMany(mappedBy = "zunite")
+    Set<ZUDiscipCref> zuDiscipCrefs;
+
+    @OneToMany(mappedBy = "zunite")
+    Set<ZUSFI> zusfi;
 
     public ZUnite() {
     }

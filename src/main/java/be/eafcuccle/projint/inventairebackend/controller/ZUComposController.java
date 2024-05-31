@@ -25,7 +25,6 @@ public class ZUComposController {
     public ZUComposController(ZUComposRepository zUComposRepository) {
         this.zucomposrepository = zUComposRepository;
     }
-
     @GetMapping("/zunite/{id}/responsable")
     public ResponseEntity<ZChercheur> getResponsableUnite(@PathVariable String id) {
         ZUCompos responsableCompos = zucomposrepository.findByIdAndResponsable(id, "Oui");

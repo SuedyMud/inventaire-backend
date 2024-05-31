@@ -1,6 +1,7 @@
 package be.eafcuccle.projint.inventairebackend.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -12,7 +13,7 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "ZChercheur")
+@Table(name = "zchercheur")
 public class ZChercheur {
 
     @Id
@@ -78,7 +79,7 @@ public class ZChercheur {
     @Column(name = "PrefPublication", length = 5000, columnDefinition = "varchar(5000) default 'integree'")
     private String prefPublication;
 
-
+    //@JsonIgnore
     @OneToMany(mappedBy = "zchercheur")
     Set<ZUCompos> zucompos;
 

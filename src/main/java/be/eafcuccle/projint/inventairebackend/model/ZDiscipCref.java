@@ -5,11 +5,11 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "ZDiscipcref")
-//attention ZDiscipcref n'est pas identique a ZDiscipCref (la DB comprend zdiscip_cref dans ce cas)
+@Table(name = "zdiscipcref")
 public class ZDiscipCref {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Idcodecref", nullable = false, length = 4)
     private String idcodecref;
 

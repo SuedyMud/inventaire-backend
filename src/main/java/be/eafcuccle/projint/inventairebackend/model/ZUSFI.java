@@ -4,15 +4,17 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "ZUSFI")
+@Table(name = "zusfi")
 public class ZUSFI {
 
     @Id
-    @Column(name = "Refunite", length = 6, nullable = false)
-    private String refunite;
-
-    @Column(name = "Refdepart", nullable = false)
-    private int refdepart;
+    private Integer id;
+    @ManyToOne
+    @JoinColumn(name = "Refunite", referencedColumnName = "idunite")
+    private ZUnite zunite;
+    @ManyToOne
+    @JoinColumn(name = "Refdepart", referencedColumnName = "iddepart")
+    private ZSFI zsfi;
 
     @Column(name = "Datedebut", nullable = false)
     private Date datedebut;

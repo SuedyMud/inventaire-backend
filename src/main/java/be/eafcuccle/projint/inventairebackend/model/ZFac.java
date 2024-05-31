@@ -4,10 +4,11 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "ZFac")
+@Table(name = "zfac")
 public class ZFac {
 
     @Id
@@ -44,11 +45,16 @@ public class ZFac {
     @Column(name = "Invent20", nullable = false)
     private int invent20;
 
-    // Getters et setters avec data
+
+    @OneToMany(mappedBy = "zfac")
+    Set<ZUFac> zufac;
+
 
 
     public ZFac() {
     }
+
+    // Getters et setters avec data
 
 
 }

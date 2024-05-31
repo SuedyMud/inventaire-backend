@@ -3,9 +3,11 @@ package be.eafcuccle.projint.inventairebackend.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Set;
+
 @Data
 @Entity
-@Table(name = "ZSFI")
+@Table(name = "zsfi")
 public class ZSFI {
 
     @Id
@@ -24,24 +26,14 @@ public class ZSFI {
     @Column(name = "Ordre", nullable = false)
     private int ordre;
 
-    // Getters et setters avec data
+    @OneToMany(mappedBy = "zsfi")
+    Set<ZUSFI> zusfi;
 
 
     public ZSFI() {
     }
 
-    public ZSFI(String depart, String departUK, String reffac, int ordre) {
-        this.depart = depart;
-        this.departUK = departUK;
-        this.reffac = reffac;
-        this.ordre = ordre;
-    }
 
-    public ZSFI(int iddepart, String depart, String departUK, String reffac, int ordre) {
-        this.iddepart = iddepart;
-        this.depart = depart;
-        this.departUK = departUK;
-        this.reffac = reffac;
-        this.ordre = ordre;
-    }
+
+    // Getters et setters avec data
 }

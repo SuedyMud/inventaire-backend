@@ -5,15 +5,19 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "ZUFac")
+@Table(name = "zufac")
 public class ZUFac {
 
     @Id
-    @Column(name = "Refunite", nullable = false)
-    private String refunite;
+    private Integer id;
 
-    @Column(name = "Reffac", nullable = false)
-    private String reffac;
+    @ManyToOne
+    @JoinColumn(name = "Refunite",referencedColumnName = "idunite")
+    private ZUnite zunite;
+
+    @ManyToOne
+    @JoinColumn(name = "Reffac", referencedColumnName = "Fac")
+    private ZFac zfac;
 
     @Column(name = "Datedebut", nullable = false)
     private Date datedebut;
@@ -21,5 +25,10 @@ public class ZUFac {
     @Column(name = "Datefin", nullable = false)
     private Date datefin;
 
+
+    public ZUFac() {
+    }
+
     // Getters et setters avec data
+
 }

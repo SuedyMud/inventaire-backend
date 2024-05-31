@@ -24,7 +24,7 @@ public class ZUDiscipCrefController {
     public ZUDiscipCrefController(ZUDiscipCrefRepository zudiscipCrefRepository) {
         this.zudiscipCrefRepository = zudiscipCrefRepository;
     }
-
+/*
     @PostMapping("/ajouter")
     public ResponseEntity<?> ajouterZUDiscipCref(@RequestBody ZUDiscipCref zudiscipCref, UriComponentsBuilder builder) {
         logger.info("Tentative d'ajout d'un nouveau ZUDiscipCref avec la référence : " + zudiscipCref.getRefunite());
@@ -81,5 +81,5 @@ public class ZUDiscipCrefController {
             logger.debug("Échec, ZUDiscipCref introuvable");
             return ResponseEntity.notFound().build();
         }
-    }
+    }*/
 }

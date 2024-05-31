@@ -1,22 +1,23 @@
 package be.eafcuccle.projint.inventairebackend.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "ZUDiscipCref")
+@Table(name = "zudiscipcref")
 public class ZUDiscipCref {
 
     @Id
-    @Column(name = "Refunite", nullable = false, length = 6)
-    private String refunite;
+    private Integer id;
 
-    @Column(name = "Refcref", nullable = false, length = 4)
-    private String refcref;
+    @ManyToOne
+    @JoinColumn(name = "Refunite", referencedColumnName = "idunite")
+    private ZUnite zunite;
+
+    @ManyToOne
+    @JoinColumn(name = "Refcref", referencedColumnName = "idcodecref")
+    private ZDiscipCref zuDiscipCrefs;
 
     // Getters and setters using Lombok's @Data
 }

@@ -1,30 +1,25 @@
 package be.eafcuccle.projint.inventairebackend.model;
 
+
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "ZUProjet")
+@Table(name = "zuprojet")
 public class ZUProjet {
 
     @Id
-    @Column(name = "Refunite", nullable = false)
-    private String refunite;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-    @Column(name = "Refprojet", nullable = false)
-    private int refprojet;
-
-/*
-   @Id*//*
-    @GeneratedValue(strategy = GenerationType.TABLE)
-    @Column(name = "id", nullable = false)
-    private int id;
-*//*
     @ManyToOne
-    @JoinColumn(name = "Refunite", nullable = false)
-    private ZUnite refunite;
+    @JoinColumn(name = "Refunite",referencedColumnName = "Idunite")
+    private ZUnite zunite;
 
-    @JoinColumn(name = "Refprojet", nullable = false)
-    private ZProjet refprojet;
+    //@JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "Refprojet", referencedColumnName = "Idprojet")
+    private ZProjet zprojet;
+
 
     // Getters et setters avec data*/
 }

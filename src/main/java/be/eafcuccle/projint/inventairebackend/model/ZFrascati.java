@@ -1,16 +1,15 @@
 package be.eafcuccle.projint.inventairebackend.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.Set;
 
 //import javax.persistence.Lob;
 
 @Data
 @Entity
-@Table(name = "ZFrascati")
+@Table(name = "zfrascati")
 public class ZFrascati {
 
     @Id
@@ -36,6 +35,12 @@ public class ZFrascati {
 
     @Column(name = "Ordre", nullable = false)
     private int ordre;
+
+    @OneToMany(mappedBy = "zfrascati")
+    Set<ZUFrascati> zufrascati;
+
+    public ZFrascati() {
+    }
 
     // Getters and setters using Lombok's @Data
 }

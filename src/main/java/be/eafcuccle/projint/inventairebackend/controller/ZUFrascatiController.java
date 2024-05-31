@@ -25,7 +25,7 @@ public class ZUFrascatiController {
         this.zuFrascatiRepository = zuFrascatiRepository;
     }
 
-    @PostMapping("/ajouter")
+    /*@PostMapping("/ajouter")
     public ResponseEntity<?> ajouterZUFrascati(@RequestBody ZUFrascati zuFrascati, UriComponentsBuilder builder) {
         logger.info("Tentative d'ajout d'un nouveau ZUFrascati avec la référence : " + zuFrascati.getRefunite());
 
@@ -63,7 +63,7 @@ public class ZUFrascatiController {
         }
     }
 
-    @PutMapping("/{id}")
+   @PutMapping("/{id}")
     public ResponseEntity<ZUFrascati> modifierZUFrascati(@PathVariable String id, @RequestBody ZUFrascati updatedZUFrascati) {
         logger.info("Tentative de mise à jour d'un ZUFrascati avec la référence : " + id);
 
@@ -81,5 +81,5 @@ public class ZUFrascatiController {
             logger.debug("Échec, ZUFrascati introuvable");
             return ResponseEntity.notFound().build();
         }
-    }
+    }*/
 }

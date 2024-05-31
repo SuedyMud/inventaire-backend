@@ -6,14 +6,15 @@ import lombok.Data;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "ZProjet")
+@Table(name = "zprojet")
 public class ZProjet {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Idprojet", nullable = false)
     private int idprojet;
 
@@ -59,15 +60,14 @@ public class ZProjet {
     @Column(name = "FromCv", length = 25, /*nullable = false,*/ columnDefinition = "varchar(25) default '0'")
     private String fromCv;
 
-    // Getters et setters avec data
-
-   /* @JsonIgnore
-    @OneToMany(mappedBy = "refprojet")
-    private List<ZUProjet> zuProjetList;*/
+    @OneToMany(mappedBy = "zprojet")
+    Set<ZUProjet> zuprojet;
 
 
     public ZProjet() {
     }
+
+    // Getters et setters avec data
 
 
 }

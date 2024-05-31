@@ -7,20 +7,19 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "ZUCompos")
+@Table(name = "zucompos")
 public class ZUCompos {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
-
-    @ManyToOne
-    @JoinColumn(name = "refche", referencedColumnName = "idche")
-    private ZChercheur zchercheur;
 
     @ManyToOne
     @JoinColumn(name = "refunite", referencedColumnName = "idunite")
     private ZUnite zunite;
+
+    @ManyToOne
+    @JoinColumn(name = "refche", referencedColumnName = "idche")
+    private ZChercheur zchercheur;
 
     @Column(name = "Responsable", length = 3, nullable = false, columnDefinition = "varchar(3) COMMENT 'Dec : décédé Dci : délégué interne Dce : délégué externe'")
     private String responsable;
@@ -42,6 +41,8 @@ public class ZUCompos {
         return this.zunite;
     }
 
+    public ZUCompos() {
+    }
 
     // Getters et setters avec data
 }
