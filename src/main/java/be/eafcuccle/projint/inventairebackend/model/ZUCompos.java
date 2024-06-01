@@ -14,11 +14,11 @@ public class ZUCompos {
     private String id;
 
     @ManyToOne
-    @JoinColumn(name = "refunite", referencedColumnName = "idunite")
+    @JoinColumn(name = "Refunite", referencedColumnName = "Idunite")
     private ZUnite zunite;
 
     @ManyToOne
-    @JoinColumn(name = "refche", referencedColumnName = "idche")
+    @JoinColumn(name = "Refche", referencedColumnName = "Idche")
     private ZChercheur zchercheur;
 
     @Column(name = "Responsable", length = 3, nullable = false, columnDefinition = "varchar(3) COMMENT 'Dec : décédé Dci : délégué interne Dce : délégué externe'")
@@ -31,7 +31,7 @@ public class ZUCompos {
     private Date datefin;
 
     @Column(name = "Ordre", nullable = false, columnDefinition = "int default 0")
-    private int ordre;
+    private Integer ordre;
 
     public ZChercheur getChercheur() {
         return this.zchercheur;
