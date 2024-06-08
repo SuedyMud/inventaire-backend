@@ -31,7 +31,7 @@ public class ZFacController {
 
     @PostMapping("/ajouter")
     public ResponseEntity<?> ajouterZFac(@RequestBody ZFac zfac, UriComponentsBuilder builder, Authentication authentication) {
-        if(hasAuthority(authentication, "SCOPE_write:all-information")){
+        if(hasAuthority(authentication, "SCOPE_write:information")){
             logger.info("Tentative d'ajout d'une nouvelle ZFac avec l'ID : " + zfac.getFac());
 
             // Affecter un nouvel ID unique en utilisant le compteur
@@ -50,14 +50,13 @@ public class ZFacController {
 
     @GetMapping("/liste")
     public Page<ZFac> listeZFac(Pageable pageable, Authentication authentication) {
-        if(hasAuthority(authentication, "SCOPE_read:information")){
+        if(hasAuthority(authentication, "SCOPE_read:restricted-information")){
             logger.info("Tentative de récupération d'une liste paginée de ZFacs.");
             return zfacRepository.findAll(pageable);
         } else{
             logger.debug("Accès refusé ! L'utilisateur n'a pas la permission d'accéder à la liste des facultés.");
             return null;
         }
-
     }
 
     @DeleteMapping("/{id}")
