@@ -64,6 +64,7 @@ public class ZUniteController {
     public Page<ZUnite> listeZUnite(Pageable pageable, Authentication authentication) {
         if(hasAuthority(authentication, "SCOPE_read:information")){
             logger.info("Tentative de récupération d'une liste paginée de ZUnites.");
+
             return zuniteRepository.findAll(pageable);
         }else{
             logger.debug("Accès refusé ! L'utilisateur n'a pas la permission d'accéder à la liste des unités.");
