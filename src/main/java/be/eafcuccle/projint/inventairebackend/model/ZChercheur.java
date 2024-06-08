@@ -83,14 +83,13 @@ public class ZChercheur {
     @OneToMany(mappedBy = "zchercheur")
     Set<ZUCompos> zucompos;
 
-    // Getters et setters avec data
+    // Getters et setters pour les data
 
 
     public ZChercheur() {
     }
 
     // Ajoutez cette méthode pour générer un nouvel identifiant
-
 
 
 }

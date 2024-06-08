@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;*/
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -51,6 +52,7 @@ public class ZChercheurController {
 
     @GetMapping("/liste")
     public Page<ZChercheur> listeZChercheur(Pageable pageable) {
+
         logger.info("Tentative de récupération d'une liste paginée de zchercheurs.");
         return zchercheurRepository.findAll(pageable);
     }
@@ -86,6 +88,8 @@ public class ZChercheurController {
         Optional<ZChercheur> optionalZChercheur = zchercheurRepository.findById(id);
         if (optionalZChercheur.isPresent()) {
             logger.debug("Succès du détail du zchercheur avec l'ID : " + id);
+
+
             return ResponseEntity.ok(optionalZChercheur.get());
         } else {
             logger.debug("ZChercheur introuvable avec l'ID : " + id);

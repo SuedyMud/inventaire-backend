@@ -1,4 +1,4 @@
-/*
+
 package be.eafcuccle.projint.inventairebackend.controller;
 
 import org.springframework.security.core.Authentication;
@@ -17,4 +17,4 @@ public class PermissionApiController {
         return authentication.getAuthorities().stream().map(GrantedAuthority::getAuthority).map((a) -> a.replace("SCOPE_", "")).toList();
     }
 }
-*/
+

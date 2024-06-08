@@ -33,10 +33,10 @@ public class ZUCompos {
     @Column(name = "Ordre", nullable = false, columnDefinition = "int default 0")
     private Integer ordre;
 
-    public ZChercheur getChercheur() {
+  /*  public ZChercheur getChercheur() {
         return this.zchercheur;
     }
-
+*/
     public ZUnite getZUnite() {
         return this.zunite;
     }

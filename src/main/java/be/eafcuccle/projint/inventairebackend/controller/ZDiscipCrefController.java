@@ -1,6 +1,7 @@
 package be.eafcuccle.projint.inventairebackend.controller;
 
 import be.eafcuccle.projint.inventairebackend.model.ZDiscipCref;
+import be.eafcuccle.projint.inventairebackend.model.ZUnite;
 import be.eafcuccle.projint.inventairebackend.repository.ZDiscipCrefRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,6 +52,23 @@ public class ZDiscipCrefController {
         zdiscipCrefRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/{id}")
+    @ResponseBody
+    public ResponseEntity<ZDiscipCref> detailZDiscipCref(@PathVariable String id) {
+        logger.info("Tentative de récupération d'un ZDiscipCref avec l'ID : " + id);
+
+        Optional<ZDiscipCref> optionalZDiscipCref = zdiscipCrefRepository.findById(id);
+        if (optionalZDiscipCref.isPresent()) {
+            ZDiscipCref existingDiscipCref = optionalZDiscipCref.get();
+            logger.debug("Succès du détail de la ZDiscipCref avec l'ID : " + id);
+            return ResponseEntity.ok(existingDiscipCref);
+        } else {
+            logger.debug("ZDiscipCref introuvable avec l'ID : " + id);
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<ZDiscipCref> modifierZDiscipCref(@PathVariable String id, @RequestBody ZDiscipCref updatedDiscipCref) {
