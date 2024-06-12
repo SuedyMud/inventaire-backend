@@ -40,7 +40,7 @@ public class ZUniteController {
     private ZChercheurRepository zchercheurRepository;
 
     @PostMapping("/ajouter")
-    public ResponseEntity<?> ajouterZUnite(@RequestBody ZUnite zunite, Authentication authentication, UriComponentsBuilder builder) {
+    public ResponseEntity<?> ajouterZUnite(@RequestBody ZUnite zunite, UriComponentsBuilder builder, Authentication authentication) {
         if(hasAuthority(authentication, "SCOPE_write:information")){
             logger.info("Tentative d'ajout d'une nouvelle ZUnite avec l'ID : " + zunite.getIdunite());
 
