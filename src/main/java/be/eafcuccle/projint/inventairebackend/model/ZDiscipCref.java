@@ -9,7 +9,6 @@ import lombok.Data;
 public class ZDiscipCref {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Idcodecref", nullable = false, length = 4)
     private String idcodecref;
 
@@ -24,14 +23,4 @@ public class ZDiscipCref {
     public ZDiscipCref() {
     }
 
-    public ZDiscipCref(String discipline, String disciplineUK) {
-        this.discipline = discipline;
-        this.disciplineUK = disciplineUK;
-    }
-
-    public ZDiscipCref(String idcodecref, String discipline, String disciplineUK) {
-        this.idcodecref = idcodecref;
-        this.discipline = discipline;
-        this.disciplineUK = disciplineUK;
-    }
 }

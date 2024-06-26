@@ -1,8 +1,10 @@
 package be.eafcuccle.projint.inventairebackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.HashSet;
 import java.util.Set;
 
 //import javax.persistence.Lob;
@@ -36,8 +38,9 @@ public class ZFrascati {
     @Column(name = "Ordre", nullable = false)
     private int ordre;
 
-    @OneToMany(mappedBy = "zfrascati")
-    Set<ZUFrascati> zufrascati;
+    //@JsonIgnore
+    @OneToMany(mappedBy = "zfrascati", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    Set<ZUFrascati> zufrascati = new HashSet<>();
 
     public ZFrascati() {
     }
