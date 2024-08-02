@@ -136,8 +136,8 @@ public class ZUnite {
     @OneToMany(mappedBy = "zunite")
     Set<ZUFac> zufac;
 
-    @OneToMany(mappedBy = "zunite", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<ZUFrascati> zufrascati = new HashSet<>();
+    @OneToMany(mappedBy = "zunite")
+    Set<ZUFrascati> zufrascati;
 
     @OneToMany(mappedBy = "zunite")
     Set<ZUDiscipCref> zuDiscipCrefs;

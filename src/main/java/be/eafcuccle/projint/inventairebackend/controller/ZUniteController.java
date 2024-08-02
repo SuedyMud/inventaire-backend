@@ -21,7 +21,7 @@ import java.util.Date;
 import java.util.Optional;
 
 
-@JsonSerialize
+//@JsonSerialize
 @RestController
 @RequestMapping("/api/zunite")
 public class ZUniteController {
