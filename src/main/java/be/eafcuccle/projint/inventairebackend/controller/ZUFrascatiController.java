@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -23,6 +24,11 @@ public class ZUFrascatiController {
 
     public ZUFrascatiController(ZUFrascatiRepository zuFrascatiRepository) {
         this.zuFrascatiRepository = zuFrascatiRepository;
+    }
+
+    @GetMapping("/{idunite}/frascati")
+    public List<ZUFrascati> getFrascatiByUnite(@PathVariable String idunite) {
+        return zuFrascatiRepository.findByUniteId(idunite);
     }
 
     /*@PostMapping("/ajouter")

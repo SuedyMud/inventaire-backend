@@ -28,16 +28,11 @@ public class ZUniteController {
 
     private final Logger logger = LoggerFactory.getLogger(ZUniteController.class);
 
-    @Autowired
-    private ZUComposRepository zucomposRepository;
-
     private int currentId = 1; // Initialisation du compteur
 
     @Autowired
     private ZUniteRepository zuniteRepository;
 
-    @Autowired
-    private ZChercheurRepository zchercheurRepository;
 
     @GetMapping("/liste")
     public ResponseEntity<Page<ZUnite>> listeZUnite(Pageable pageable, Authentication authentication) {
@@ -72,37 +67,6 @@ public class ZUniteController {
         }
     }
 
-
-
-
-   /* @GetMapping("/{idunite}/responsable")
-    public ZChercheur getResponsableUnite(@PathVariable String idunite) {
-        ZUCompos responsableCompos = zucomposRepository.findByIdAndResponsable(idunite, "Oui");
-        return responsableCompos != null ? responsableCompos.getChercheur() : null;
-    }*/
-
- /*   @GetMapping("/{idunite}/chercheurs")
-    public List<ZChercheur> getChercheursByUnite(@PathVariable String idunite) {
-        List<ZUCompos> uComposList = zucomposRepository.findByIdUnite(idunite);
-        return uComposList.stream().map(ZUCompos::getChercheur).collect(Collectors.toList());
-    }*/
-
-
-    // Ajoutez une méthode pour récupérer les composants d'une unité spécifique
-   /* @GetMapping("/compos/{id}")
-    public ResponseEntity<List<ZUCompos>> getComposOfUnite(@PathVariable String id) {
-        logger.info("Tentative de récupération des composants de l'unité avec l'ID : " + id);
-
-        Optional<ZUnite> optionalZUnite = zuniteRepository.findById(id);
-        if (optionalZUnite.isPresent()) {
-            ZUnite unite = optionalZUnite.get();
-            List<ZUCompos> composList = unite.getComposList();
-            return ResponseEntity.ok(composList);
-        } else {
-            logger.debug("Unité introuvable avec l'ID : " + id);
-            return ResponseEntity.notFound().build();
-        }
-    }*/
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> supprimerZUnite(@PathVariable String id, Authentication authentication) {

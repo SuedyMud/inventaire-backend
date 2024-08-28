@@ -14,7 +14,10 @@ public interface ZUComposRepository extends JpaRepository<ZUCompos, String> {
 
     List<ZUCompos> findAll();
 
+    // Nouvelle méthode pour récupérer les responsables d'une unité
+    List<ZUCompos> findByZunite_IduniteAndResponsable(String idunite, String responsable);
     ZUCompos findByIdAndResponsable(String id, String responsable);
+
     List<ZUCompos> findByZunite(ZUnite zunite);
 
 

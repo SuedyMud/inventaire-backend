@@ -5,11 +5,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
+
 import java.util.List;
 
 public interface ZUFrascatiRepository extends JpaRepository<ZUFrascati, String> {
-    @Query("select zu from ZUFrascati zu")
-    Page<ZUFrascati> findZUFrascati(Pageable pageable);
 
-    List<ZUFrascati> findAll();
+    @Query("SELECT zuf FROM ZUFrascati zuf WHERE zuf.zunite.idunite = :idunite")
+    List<ZUFrascati> findByUniteId(@Param("idunite") String idunite);
+
+    Page<ZUFrascati> findAll(Pageable pageable);
 }
