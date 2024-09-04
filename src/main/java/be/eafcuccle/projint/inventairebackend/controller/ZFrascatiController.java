@@ -86,7 +86,7 @@ public class ZFrascatiController {
                 Hibernate.initialize(zfrascati.getZufrascati());
                 zfrascati.getZufrascati().forEach(zuf -> {
                     Hibernate.initialize(zuf.getZunite());
-                    Hibernate.initialize(zuf.getZfrascati());
+                    /*Hibernate.initialize(zuf.getZfrascati());*/
                 });
                 logger.debug("Succès du détail du ZFrascati avec l'ID : " + id);
                 return ResponseEntity.ok(zfrascati);

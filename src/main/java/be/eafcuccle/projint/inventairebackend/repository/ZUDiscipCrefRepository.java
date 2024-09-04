@@ -12,4 +12,6 @@ public interface ZUDiscipCrefRepository extends JpaRepository<ZUDiscipCref, Stri
     Page<ZUDiscipCref> findZUDiscipCref(Pageable pageable);
 
     List<ZUDiscipCref> findAll();
+
+    List<ZUDiscipCref> findByZunite_Idunite(String idunite);
 }

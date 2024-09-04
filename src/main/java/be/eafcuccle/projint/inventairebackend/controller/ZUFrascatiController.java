@@ -1,18 +1,15 @@
 package be.eafcuccle.projint.inventairebackend.controller;
 
+import be.eafcuccle.projint.inventairebackend.model.ZFrascati;
 import be.eafcuccle.projint.inventairebackend.model.ZUFrascati;
 import be.eafcuccle.projint.inventairebackend.repository.ZUFrascatiRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import java.net.URI;
+
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/zufrascati")
@@ -20,15 +17,18 @@ public class ZUFrascatiController {
 
     private final Logger logger = LoggerFactory.getLogger(ZUFrascatiController.class);
 
-    private final ZUFrascatiRepository zuFrascatiRepository;
+    private final ZUFrascatiRepository zufrascatiRepository;
 
-    public ZUFrascatiController(ZUFrascatiRepository zuFrascatiRepository) {
-        this.zuFrascatiRepository = zuFrascatiRepository;
+    public ZUFrascatiController(ZUFrascatiRepository zufrascatiRepository) {
+        this.zufrascatiRepository = zufrascatiRepository;
     }
 
-    @GetMapping("/{idunite}/frascati")
-    public List<ZUFrascati> getFrascatiByUnite(@PathVariable String idunite) {
-        return zuFrascatiRepository.findByUniteId(idunite);
+    @GetMapping("/{idunite}")
+    public List<ZFrascati> getFrascatiByUnite(@PathVariable String idunite) {
+        List<ZUFrascati> zufrascatis = zufrascatiRepository.findByZunite_Idunite(idunite);
+        return zufrascatis.stream()
+                .map(ZUFrascati::getFrascati)
+                .collect(Collectors.toList());
     }
 
     /*@PostMapping("/ajouter")

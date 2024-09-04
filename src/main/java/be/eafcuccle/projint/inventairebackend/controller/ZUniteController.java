@@ -1,10 +1,7 @@
 package be.eafcuccle.projint.inventairebackend.controller;
 
 import be.eafcuccle.projint.inventairebackend.model.ZUnite;
-import be.eafcuccle.projint.inventairebackend.repository.ZChercheurRepository;
-import be.eafcuccle.projint.inventairebackend.repository.ZUComposRepository;
 import be.eafcuccle.projint.inventairebackend.repository.ZUniteRepository;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +18,7 @@ import java.util.Date;
 import java.util.Optional;
 
 
-//@JsonSerialize
+
 @RestController
 @RequestMapping("/api/zunite")
 public class ZUniteController {

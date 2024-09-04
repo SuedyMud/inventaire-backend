@@ -24,11 +24,11 @@ public class ZFrascati {
     @Column(name = "FrascatiUK", nullable = false, length = 255)
     private String frascatiUK;
 
-    //@Lob
+
     @Column(name = "Description", nullable = false)
     private String description;
 
-    //@Lob
+
     @Column(name = "DescriptionUK", nullable = false)
     private String descriptionUK;
 

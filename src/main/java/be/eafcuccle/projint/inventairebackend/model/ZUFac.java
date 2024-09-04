@@ -29,6 +29,10 @@ public class ZUFac {
     public ZUFac() {
     }
 
+    public ZFac getFac() {
+        return zfac;
+    }
+
     // Getters et setters avec data
 
 }

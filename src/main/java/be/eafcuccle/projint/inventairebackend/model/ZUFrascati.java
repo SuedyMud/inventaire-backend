@@ -23,9 +23,11 @@ public class ZUFrascati {
     }
 
     // Getter et setter pour 'zfrascati'
-    public ZFrascati getzfrascati() {
+    public ZFrascati getFrascati() {
         return zfrascati;
     }
+
+
 
     // Getters and setters using Lombok's @Data
 

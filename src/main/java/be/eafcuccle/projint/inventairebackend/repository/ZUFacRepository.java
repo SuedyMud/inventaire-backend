@@ -12,4 +12,7 @@ public interface ZUFacRepository extends JpaRepository<ZUFac, String> {
     Page<ZUFac> findZUFac(Pageable pageable);
 
     List<ZUFac> findAll();
+
+
+    List<ZUFac> findByZunite_Idunite(String idunite);
 }

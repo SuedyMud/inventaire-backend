@@ -1,17 +1,15 @@
 package be.eafcuccle.projint.inventairebackend.controller;
 
+import be.eafcuccle.projint.inventairebackend.model.ZFac;
 import be.eafcuccle.projint.inventairebackend.model.ZUFac;
 import be.eafcuccle.projint.inventairebackend.repository.ZUFacRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import java.net.URI;
-import java.util.Optional;
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 @RestController
 @RequestMapping("/api/zufac")
@@ -25,6 +23,15 @@ public class ZUFacController {
         this.zufacRepository = zufacRepository;
     }
 
+    @GetMapping("/{idunite}")
+    public List<ZFac> getFacByUnite(@PathVariable String idunite) {
+        List<ZUFac> zufac = zufacRepository.findByZunite_Idunite(idunite);
+        return zufac.stream()
+                .map(ZUFac::getFac)
+                .collect(Collectors.toList());
+    }
+
+/*
     @PostMapping("/ajouter")
     public ResponseEntity<?> ajouterZUFac(@RequestBody ZUFac zufac, UriComponentsBuilder builder) {
         // Implémentez la logique pour ajouter un nouvel ZUFac
@@ -53,5 +60,5 @@ public class ZUFacController {
     public ResponseEntity<ZUFac> modifierZUFac(@PathVariable String id, @RequestBody ZUFac updatedZUFac) {
         // Implémentez la logique pour modifier un ZUFac
         return ResponseEntity.ok().build(); // Modifier en conséquence
-    }
+    }*/
 }

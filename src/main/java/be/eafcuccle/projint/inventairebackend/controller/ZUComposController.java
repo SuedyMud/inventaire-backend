@@ -22,8 +22,8 @@ public class ZUComposController {
 
     private final ZUComposRepository zucomposRepository;
 
-    public ZUComposController(ZUComposRepository zUComposRepository) {
-        this.zucomposRepository = zUComposRepository;
+    public ZUComposController(ZUComposRepository zucomposRepository) {
+        this.zucomposRepository = zucomposRepository;
     }
 
     @GetMapping("/{idunite}/responsables")

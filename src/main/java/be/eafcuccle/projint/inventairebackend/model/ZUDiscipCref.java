@@ -17,7 +17,11 @@ public class ZUDiscipCref {
 
     @ManyToOne
     @JoinColumn(name = "Refcref", referencedColumnName = "idcodecref")
-    private ZDiscipCref zuDiscipCrefs;
+    private ZDiscipCref zdiscipCrefs;
+
+    public ZDiscipCref getdiscipCref() {
+        return zdiscipCrefs;
+    }
 
     // Getters and setters using Lombok's @Data
 }
