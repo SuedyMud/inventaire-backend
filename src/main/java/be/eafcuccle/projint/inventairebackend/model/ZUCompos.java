@@ -33,15 +33,19 @@ public class ZUCompos {
     @Column(name = "Ordre", nullable = false, columnDefinition = "int default 0")
     private Integer ordre;
 
+
+
+
+    public ZUCompos() {
+    }
+
     // Getter et setter pour 'chercheur'
     public ZChercheur getChercheur() {
         return zchercheur;
     }
 
-    public void setChercheur(ZChercheur chercheur) {
+    public void setChercheur(ZChercheur zchercheur) {
         this.zchercheur = zchercheur;
-    }
-    public ZUCompos() {
     }
 
     // Getters et setters avec data
