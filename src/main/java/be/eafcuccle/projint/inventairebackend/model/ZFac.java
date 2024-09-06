@@ -50,7 +50,6 @@ public class ZFac {
     Set<ZUFac> zufac;
 
 
-
     public ZFac() {
     }
 

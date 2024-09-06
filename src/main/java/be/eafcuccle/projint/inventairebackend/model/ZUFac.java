@@ -1,9 +1,12 @@
 package be.eafcuccle.projint.inventairebackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.Date;
 
+@Data
 @Entity
 @Table(name = "zufac")
 public class ZUFac {
@@ -14,6 +17,8 @@ public class ZUFac {
     @ManyToOne
     @JoinColumn(name = "Refunite",referencedColumnName = "idunite")
     private ZUnite zunite;
+
+    @JsonIgnore // Ajoutez cette annotation pour éviter la récursion
 
     @ManyToOne
     @JoinColumn(name = "Reffac", referencedColumnName = "Fac")
