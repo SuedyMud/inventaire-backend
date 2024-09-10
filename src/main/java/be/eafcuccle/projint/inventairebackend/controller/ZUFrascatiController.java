@@ -26,9 +26,11 @@ public class ZUFrascatiController {
     @GetMapping("/{idunite}")
     public List<ZFrascati> getFrascatiByUnite(@PathVariable String idunite) {
         logger.info("Tentative de récupération d'une liste de ZUFrascati avec la référence : " + idunite);
+
         List<ZUFrascati> zufrascatis = zufrascatiRepository.findByZunite_Idunite(idunite);
         return zufrascatis.stream()
                 .map(ZUFrascati::getFrascati)
+                .distinct()
                 .collect(Collectors.toList());
     }
 

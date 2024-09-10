@@ -25,9 +25,12 @@ public class ZUDiscipCrefController {
 
     @GetMapping("/{idunite}")
     public List<ZDiscipCref> getFrascatiByUnite(@PathVariable String idunite) {
+        logger.info("Tentative de récupération d'une liste de ZUDiscipCref avec la référence : " + idunite);
+
         List<ZUDiscipCref> zudiscipCref = zudiscipCrefRepository.findByZunite_Idunite(idunite);
         return zudiscipCref.stream()
                 .map(ZUDiscipCref::getdiscipCref)
+                .distinct()
                 .collect(Collectors.toList());
     }
 

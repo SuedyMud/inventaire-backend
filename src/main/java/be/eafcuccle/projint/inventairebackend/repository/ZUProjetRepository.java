@@ -1,6 +1,7 @@
 package be.eafcuccle.projint.inventairebackend.repository;
 
 import be.eafcuccle.projint.inventairebackend.model.ZProjet;
+import be.eafcuccle.projint.inventairebackend.model.ZUFac;
 import be.eafcuccle.projint.inventairebackend.model.ZUProjet;
 import be.eafcuccle.projint.inventairebackend.model.ZUnite;
 import org.springframework.data.domain.Page;
@@ -16,6 +17,9 @@ public interface ZUProjetRepository extends JpaRepository<ZProjet, Integer> {
 
     List<ZProjet> findAll();
 
-    @Query("SELECT zup.zunite FROM ZUProjet zup WHERE zup.zprojet.id = ?1")
+   /* @Query("SELECT zup.zunite FROM ZUProjet zup WHERE zup.zprojet.id = ?1")
     List<ZUnite> findUnitesByProjetId(Integer idprojet);
+
+    List<ZUProjet> findByZunite_Idunite(String idunite);*/
+
 }

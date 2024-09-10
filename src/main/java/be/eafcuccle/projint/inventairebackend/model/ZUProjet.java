@@ -14,11 +14,22 @@ public class ZUProjet {
     @JoinColumn(name = "Refunite",referencedColumnName = "Idunite")
     private ZUnite zunite;
 
-    //@JsonIgnore
+
     @ManyToOne
     @JoinColumn(name = "Refprojet", referencedColumnName = "Idprojet")
     private ZProjet zprojet;
 
 
+    public ZUProjet(){
+    }
+
+   /* public ZProjet getProjet() {
+        return zprojet;
+    }*/
+
     // Getters et setters avec data*/
+
+    /*public ZChercheur getChercheur() {
+        return zchercheur;
+    }*/
 }

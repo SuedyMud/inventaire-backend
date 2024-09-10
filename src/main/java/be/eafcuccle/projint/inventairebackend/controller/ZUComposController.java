@@ -28,11 +28,16 @@ public class ZUComposController {
 
     @GetMapping("/{idunite}/responsables")
     public List<ZChercheur> getResponsablesUnite(@PathVariable String idunite) {
+        logger.info("Tentative de récupération d'une liste de ZUCompos avec la référence : " + idunite);
+
         List<ZUCompos> responsablesCompos = zucomposRepository.findByZunite_IduniteAndResponsable(idunite, "oui");
         return responsablesCompos.stream()
                 .map(ZUCompos::getChercheur)
+                .distinct()
                 .collect(Collectors.toList());
     }
+
+
 
     @PostMapping("/zcompos/ajouter")
     public ResponseEntity<?> ajouterZUCompos(@RequestBody ZUCompos zUCompos) {
