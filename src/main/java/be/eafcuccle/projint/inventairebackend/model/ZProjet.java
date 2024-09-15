@@ -63,6 +63,10 @@ public class ZProjet {
     @OneToMany(mappedBy = "zprojet")
     Set<ZUProjet> zuprojet;
 
+    /*@ManyToOne
+    @JoinColumn(name = "Idunite", nullable = false)  // Définir la colonne de jointure
+    private ZUnite zunite;*/
+
 
     public ZProjet() {
     }

@@ -18,6 +18,10 @@ public class ZUCompos {
     private ZUnite zunite;
 
     @ManyToOne
+    @JoinColumn(name = "Refprojet", referencedColumnName = "Idprojet")
+    private ZProjet zprojet;  // Ajout de la relation avec ZProjet
+
+    @ManyToOne
     @JoinColumn(name = "Refche", referencedColumnName = "Idche")
     private ZChercheur zchercheur;
 

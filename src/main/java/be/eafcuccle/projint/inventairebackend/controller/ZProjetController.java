@@ -1,6 +1,5 @@
 package be.eafcuccle.projint.inventairebackend.controller;
 
-import be.eafcuccle.projint.inventairebackend.model.ZChercheur;
 import be.eafcuccle.projint.inventairebackend.model.ZProjet;
 import be.eafcuccle.projint.inventairebackend.repository.ZProjetRepository;
 import org.slf4j.Logger;
@@ -16,6 +15,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.Date;
+
 import java.util.Optional;
 
 @RestController
@@ -128,6 +128,9 @@ public class ZProjetController {
         }
 
     }
+
+
+
 
     public static boolean hasAuthority(Authentication authentication, String expectedAuthority) {
         return authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals(expectedAuthority));
