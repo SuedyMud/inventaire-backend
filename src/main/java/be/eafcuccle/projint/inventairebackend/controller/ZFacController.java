@@ -1,6 +1,7 @@
 package be.eafcuccle.projint.inventairebackend.controller;
 
 import be.eafcuccle.projint.inventairebackend.model.ZFac; // Modification de l'import
+import be.eafcuccle.projint.inventairebackend.model.ZUnite;
 import be.eafcuccle.projint.inventairebackend.repository.ZFacRepository; // Modification de l'import
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -71,6 +72,30 @@ public class ZFacController {
         }
 
     }
+
+    @GetMapping("/{id}")
+    @ResponseBody
+    public ResponseEntity<ZFac> detailZFac(@PathVariable String id, Authentication authentication) {
+        if (hasAuthority(authentication, "SCOPE_read:information")) {
+            logger.info("Tentative de récupération d'une ZFac avec l'ID : " + id);
+
+            Optional<ZFac> optionalZFac = zfacRepository.findById(id);
+            if (optionalZFac.isPresent()) {
+                ZFac existingFac = optionalZFac.get();
+                logger.debug("Succès du détail de la ZFac avec l'ID : " + id);
+
+                // Ajout d'une gestion supplémentaire pour d'autres données spécifiques à ZFac si nécessaire
+                return ResponseEntity.ok(existingFac);
+            } else {
+                logger.debug("ZFac introuvable avec l'ID : " + id);
+                return ResponseEntity.notFound().build();
+            }
+        } else {
+            logger.debug("Accès refusé ! L'utilisateur n'a pas la permission d'afficher les détails d'une faculté.");
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+    }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<ZFac> modifierZFac(@PathVariable String id, @RequestBody ZFac updatedZFac, Authentication authentication) {
