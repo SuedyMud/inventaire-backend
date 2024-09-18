@@ -65,7 +65,7 @@ public class ZUniteController {
     }
 
 
-    @DeleteMapping("/{id}")
+    /*@DeleteMapping("/{id}")
     public ResponseEntity<?> supprimerZUnite(@PathVariable String id, Authentication authentication) {
         if (hasAuthority(authentication, "SCOPE_write:information")) {
             logger.info("Tentative de suppression d'une ZUnite avec l'ID : " + id);
@@ -75,7 +75,39 @@ public class ZUniteController {
             logger.debug("Accès refusé ! L'utilisateur n'a pas la permission de supprimer une unité.");
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
+    }*/
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> supprimerZUnite(@PathVariable String id, Authentication authentication) {
+        if (hasAuthority(authentication, "SCOPE_write:information")) {
+            logger.info("Tentative de suppression d'une ZUnite avec l'ID : " + id);
+
+            Optional<ZUnite> optionalZUnite = zuniteRepository.findById(id);
+            if (optionalZUnite.isPresent()) {
+                ZUnite zunite = optionalZUnite.get();
+
+                // Vérifier s'il y a des associations
+                if (!zunite.getZucompos().isEmpty() || !zunite.getZuprojet().isEmpty() ||
+                        !zunite.getZufac().isEmpty() || !zunite.getZufrascati().isEmpty() ||
+                        !zunite.getZuDiscipCrefs().isEmpty() || !zunite.getZusfi().isEmpty()) {
+                    logger.debug("Impossible de supprimer l'unité car elle est encore associée à d'autres entités.");
+                    return ResponseEntity.status(HttpStatus.CONFLICT)
+                            .body("Impossible de supprimer l'unité car elle est encore associée à d'autres entités.");
+                }
+
+                zuniteRepository.deleteById(id);
+                logger.info("Unité supprimée avec succès.");
+                return ResponseEntity.noContent().build();
+            } else {
+                logger.debug("Unité introuvable.");
+                return ResponseEntity.notFound().build();
+            }
+        } else {
+            logger.debug("Accès refusé ! L'utilisateur n'a pas la permission de supprimer une unité.");
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
     }
+
 
     @GetMapping("/{id}")
     @ResponseBody

@@ -127,7 +127,27 @@ public class ZUnite {
     private String niveau;
 
 
-    @OneToMany(mappedBy = "zunite")
+    @OneToMany(mappedBy = "zunite", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ZUCompos> zucompos = new HashSet<>();
+
+    @OneToMany(mappedBy = "zunite", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ZUProjet> zuprojet = new HashSet<>();
+
+    @OneToMany(mappedBy = "zunite", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ZUFac> zufac = new HashSet<>();
+
+    @OneToMany(mappedBy = "zunite", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ZUFrascati> zufrascati = new HashSet<>();
+
+    @OneToMany(mappedBy = "zunite", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ZUDiscipCref> zuDiscipCrefs = new HashSet<>();
+
+    @OneToMany(mappedBy = "zunite", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ZUSFI> zusfi = new HashSet<>();
+
+
+
+    /*@OneToMany(mappedBy = "zunite")
     Set<ZUCompos> zucompos;
 
     @OneToMany(mappedBy = "zunite")
@@ -143,7 +163,7 @@ public class ZUnite {
     Set<ZUDiscipCref> zuDiscipCrefs;
 
     @OneToMany(mappedBy = "zunite")
-    Set<ZUSFI> zusfi;
+    Set<ZUSFI> zusfi;*/
 
     public ZUnite() {
     }
