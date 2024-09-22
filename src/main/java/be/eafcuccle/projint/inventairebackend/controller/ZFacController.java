@@ -27,7 +27,7 @@ public class ZFacController {
 
     @Autowired
     private ZFacRepository zfacRepository;
-    private int currentId = 1;
+    /*private int currentId = 1;*/
 
 
     @PostMapping("/ajouter")
@@ -35,8 +35,9 @@ public class ZFacController {
         if(hasAuthority(authentication, "SCOPE_write:information")){
             logger.info("Tentative d'ajout d'une nouvelle ZFac avec l'ID : " + zfac.getFac());
 
+            // Ne pas réaffecter la valeur de `fac` pour reprendre celle dans le frontend
             // Affecter un nouvel ID unique en utilisant le compteur
-            zfac.setFac(String.valueOf(currentId++)); // Conversion de l'ID en chaîne de caractères et incrémentation
+           /* zfac.setFac(String.valueOf(currentId++)); // Conversion de l'ID en chaîne de caractères et incrémentation*/
             zfac.setDMaj(new Date()); // Définir la date actuelle
             zfacRepository.save(zfac);
 

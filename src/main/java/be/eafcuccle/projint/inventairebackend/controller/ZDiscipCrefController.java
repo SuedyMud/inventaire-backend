@@ -25,7 +25,7 @@ public class ZDiscipCrefController {
 
     @Autowired
     private ZDiscipCrefRepository zdiscipCrefRepository;
-    private int currentId = 1;
+    /*private int currentId = 1;*/
 
 
     @PostMapping("/ajouter")
@@ -34,7 +34,7 @@ public class ZDiscipCrefController {
             logger.info("Tentative d'ajout d'une nouvelle discipline avec l'ID : " + zdiscipCref.getIdcodecref());
 
 
-            zdiscipCref.setIdcodecref(String.valueOf(currentId++)); // Conversion de l'ID en chaîne de caractères et incrémentation
+           // zdiscipCref.setIdcodecref(String.valueOf(currentId++)); // Conversion de l'ID en chaîne de caractères et incrémentation
 
             zdiscipCrefRepository.save(zdiscipCref);
 
